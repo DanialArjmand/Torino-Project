@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn[wght].woff2")
+      format("woff2 supports variations"),
+    url("/fonts/Vazirmatn[wght].woff2") format("woff2-variations"),
+    url("/fonts/Vazirmatn[wght].ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("/fonts/YekanBakhRegular.otf") format("opentype");
+  src: url("/fonts/YekanBakhBold.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
