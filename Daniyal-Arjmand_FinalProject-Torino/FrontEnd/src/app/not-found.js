@@ -5,7 +5,7 @@ function NotFound() {
   return (
     <div className={styles.container}>
       <div className={styles.icon}>
-        <img src="/images/ErrorTV.svg" alt="Error Logo" />
+        <img src="/images/ErrorTV.svg" alt="Error Icon" />
       </div>
       <div className={styles.text}>
         <h2>!صفحه مورد نظر یافت نشد</h2>

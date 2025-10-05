@@ -13,6 +13,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0 10px;
+  color: #282828;
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   font-size: 16px;
   font-weight: 400;
@@ -111,6 +112,7 @@
   width: 20%;
   display: flex;
   justify-content: space-between;
+  color: #282828;
 }
 
 .description div {
