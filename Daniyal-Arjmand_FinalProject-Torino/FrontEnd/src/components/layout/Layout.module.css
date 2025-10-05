@@ -62,7 +62,7 @@
 }
 
 .lineHr {
-  height: 1px;
+  height: 0.5px;
   background-color: #00000033;
   border: none;
   margin: 0 175px;
@@ -131,6 +131,7 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   font-weight: 400;
   padding: 2px 0;
+  cursor: pointer;
 }
 
 .websiteRights {
