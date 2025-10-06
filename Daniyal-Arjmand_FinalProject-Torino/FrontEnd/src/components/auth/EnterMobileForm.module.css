@@ -22,6 +22,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  animation: zoomInContent 0.2s ease-out forwards;
+  word-spacing: 2px;
 }
 
 .header {
@@ -87,4 +89,15 @@
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+}
+
+@keyframes zoomInContent {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -2,21 +2,17 @@
 
 import React, { useState } from "react";
 import LoginPage from "@/components/auth/LoginPage";
-import { useRouter } from "next/navigation";
 
 import styles from "@/components/layout/Layout.module.css";
 
 function Layout({ children }) {
   const [showLogin, setShowLogin] = useState(false);
-  const router = useRouter();
 
   const handleOpenLogin = () => {
     setShowLogin(true);
-    router.push("/auth");
   };
   const handleCloseLogin = () => {
     setShowLogin(false);
-    router.push("/");
   };
 
   return (

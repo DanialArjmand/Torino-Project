@@ -89,9 +89,9 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack, onClose }) {
           </div>
           <div className={styles.resendContainer}>
             {timer > 0 ? (
-              <p>
-                تا ارسال مجدد کد{" "}
+              <p className={styles.textTimer}>
                 <span className={styles.timer}>{formatTime(timer)}</span>
+                <span>تا ارسال مجدد کد</span>
               </p>
             ) : (
               <p>

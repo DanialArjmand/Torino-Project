@@ -22,7 +22,6 @@ function LoginPage({ onClose }) {
     setStep(1);
   };
 
-
   return (
     <div onClick={onClose}>
       <div>

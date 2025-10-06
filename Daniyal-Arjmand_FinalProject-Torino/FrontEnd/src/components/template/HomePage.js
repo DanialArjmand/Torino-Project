@@ -1,12 +1,9 @@
-"use client";
-import { useState } from "react";
-import LoginPage from "@/app/auth/page";
+import Filter from "../module/home/Filter";
 
 export default function HomePage() {
-
   return (
     <div>
-      
+      <Filter />
     </div>
   );
 }
