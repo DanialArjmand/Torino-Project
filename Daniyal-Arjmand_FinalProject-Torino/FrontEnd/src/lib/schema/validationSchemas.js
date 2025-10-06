@@ -11,6 +11,6 @@ export const otpSchema = yup.object().shape({
   otp: yup
     .string()
     .required("وارد کردن کد الزامی است")
-    .length(5, "کد تایید باید ۵ رقم باشد")
+    .length(6, "کد تایید باید ۶ رقم باشد")
     .matches(/^[0-9]+$/, "فقط می‌توانید عدد وارد کنید"),
 });

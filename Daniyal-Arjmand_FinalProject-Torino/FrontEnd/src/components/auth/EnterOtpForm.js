@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { otpSchema } from "@/lib/schema/validationSchemas";
 import styles from "./EnterOtpForm.module.css";
 
-function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack, onClose }) {
+function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
   const {
     control,
     handleSubmit,
@@ -49,8 +49,10 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack, onClose }) {
   };
 
   useEffect(() => {
-    if (otpValue && otpValue.length === 5 && isValid) {
-      handleSubmit(onSubmit)();
+    if (otpValue && otpValue.length === 6 && isValid) {
+      setTimeout(() => {
+        handleSubmit(onSubmit)();
+      }, 0);
     }
   }, [otpValue, isValid, handleSubmit, onSubmit]);
 
@@ -59,7 +61,7 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack, onClose }) {
   };
 
   return (
-    <div className={styles.backgroundBlur} onClick={onClose}>
+    <div className={styles.backgroundBlur}>
       <div className={styles.container} onClick={handleModalContentClick}>
         <div className={styles.header}>
           <button onClick={onBack} className={styles.backButton}>
@@ -77,7 +79,7 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack, onClose }) {
             render={({ field }) => (
               <OtpInput
                 {...field}
-                numInputs={5}
+                numInputs={6}
                 renderInput={(props) => <input {...props} />}
                 containerStyle={styles.otpContainer}
                 inputStyle={styles.otpInput}
