@@ -1,16 +1,34 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import LoginPage from "@/components/auth/LoginPage";
+import { useRouter } from "next/navigation";
+
 import styles from "@/components/layout/Layout.module.css";
 
 function Layout({ children }) {
+  const [showLogin, setShowLogin] = useState(false);
+  const router = useRouter();
+
+  const handleOpenLogin = () => {
+    setShowLogin(true);
+    router.push("/auth");
+  };
+  const handleCloseLogin = () => {
+    setShowLogin(false);
+    router.push("/");
+  };
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.buttons}>
-          <button>
+          <button onClick={handleOpenLogin}>
             ثبت نام <span>|</span> ورود
             <img src="/images/frame.svg" alt="user Icon" />
           </button>
         </div>
+
         <div className={styles.link}>
           <a>تماس با ما</a>
           <a>درباره ما</a>
@@ -20,8 +38,9 @@ function Layout({ children }) {
         </div>
       </header>
       <main className={styles.container}>{children}</main>
+      {showLogin && <LoginPage onClose={handleCloseLogin} />}
 
-      <hr className={styles.lineHr}/>
+      <hr className={styles.lineHr} />
 
       <footer className={styles.footer}>
         <div className={styles.license}>

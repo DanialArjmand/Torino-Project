@@ -1,0 +1,90 @@
+.backgroundBlur {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.5px);
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+}
+
+.container {
+  width: 561px;
+  height: 362px;
+  border-radius: 20px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  position: absolute;
+  top: 12;
+  left: 10;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  padding-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #282828;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  /* height: 100%; */
+  text-align: right;
+}
+
+.form label {
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.input {
+  height: 54px;
+  border: 1px solid #00000040;
+  border-radius: 6px;
+  text-align: right;
+  padding: 0 10px;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.containerError {
+  height: 50px;
+}
+
+.error {
+  color: red;
+}
+
+.button {
+  height: 54px;
+  border: 1px solid #00000040;
+  background-color: #28a745;
+  border-radius: 6px;
+  color: #fff;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}

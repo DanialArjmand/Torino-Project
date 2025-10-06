@@ -5,12 +5,10 @@
 }
 
 @font-face {
-  font-family: "Vazirmatn";
-  src: url("/fonts/Vazirmatn[wght].woff2")
-      format("woff2 supports variations"),
-    url("/fonts/Vazirmatn[wght].woff2") format("woff2-variations"),
-    url("/fonts/Vazirmatn[wght].ttf") format("truetype");
-  font-weight: 100 900;
+  font-family: "Vazir-FD";
+  src: url("/fonts/Vazir-FD.woff2") format("woff2"),
+       url("/fonts/Vazir-FD.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
