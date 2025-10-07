@@ -1,0 +1,110 @@
+.tourList {
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+
+.tourList h2 {
+  width: 1180px;
+  text-align: right;
+  word-spacing: 4px;
+  font-size: 32px;
+  font-weight: 400;
+  padding: 0 0 10px;
+}
+
+.parentContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 278px);
+  justify-content: center;
+  align-items: center;
+  gap: 23px;
+}
+
+.container {
+  width: 278px;
+  height: 277px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 2px #00000040;
+}
+
+.image {
+  height: 159px;
+}
+
+.description {
+  width: 100%;
+}
+
+.text {
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid #0000001f;
+  overflow: hidden;
+}
+
+.text h1 {
+  font-size: 22px;
+  font-weight: 500;
+  text-align: right;
+  padding: 5px 8px 2px;
+}
+
+.text p {
+  height: 26px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #282828b2;
+  text-align: right;
+  padding: 0 8px;
+  overflow: hidden;
+}
+
+.reservation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0 0;
+}
+
+.reservation p {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  color: #282828cc;
+}
+
+.reservation span {
+  color: #009eca;
+  padding: 0 5px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.reservation button {
+  width: 64px;
+  height: 25px;
+  background-color: #28a745;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: 8px;
+  cursor: pointer;
+}
