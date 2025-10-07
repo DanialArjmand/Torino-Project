@@ -24,6 +24,7 @@
   position: relative;
   animation: zoomInContent 0.2s ease-out forwards;
   word-spacing: 2px;
+  z-index: 100;
 }
 
 .header {

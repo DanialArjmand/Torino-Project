@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { mobileSchema } from "@/lib/schema/validationSchemas";
 import styles from "@/components/auth/EnterMobileForm.module.css";
 
-function EnterMobileForm({ onMobileSubmit, onClose }) {
+function EnterMobileForm({ onMobileSubmit, onClose, feedback, isLoading }) {
   const {
     register,
     handleSubmit,
@@ -51,9 +51,19 @@ function EnterMobileForm({ onMobileSubmit, onClose }) {
             {errors.mobile && (
               <p className={styles.error}>{errors.mobile.message}</p>
             )}
+
+            {feedback.message && (
+              <p
+                className={
+                  feedback.type === "success" ? styles.success : styles.error
+                }
+              >
+                {feedback.message}
+              </p>
+            )}
           </div>
-          <button type="submit" className={styles.button}>
-            ارسال کد تایید
+          <button type="submit" className={styles.button} disabled={isLoading}>
+            {isLoading ? "در حال ارسال..." : "ارسال کد تایید"}
           </button>
         </form>
       </div>

@@ -7,7 +7,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { otpSchema } from "@/lib/schema/validationSchemas";
 import styles from "./EnterOtpForm.module.css";
 
-function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
+function EnterOtpForm({
+  mobileNumber,
+  onOtpSubmit,
+  onBack,
+  isLoading,
+  feedback,
+  onResendCode,
+}) {
   const {
     control,
     handleSubmit,
@@ -38,7 +45,9 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
   }, [timer]);
 
   const handleResendCode = () => {
-    console.log("درخواست ارسال مجدد کد...");
+    if (onResendCode) {
+      onResendCode();
+    }
     setTimer(120);
   };
 
@@ -47,14 +56,6 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
     const seconds = String(time % 60).padStart(2, "0");
     return `${minutes}:${seconds}`;
   };
-
-  useEffect(() => {
-    if (otpValue && otpValue.length === 6 && isValid) {
-      setTimeout(() => {
-        handleSubmit(onSubmit)();
-      }, 0);
-    }
-  }, [otpValue, isValid, handleSubmit, onSubmit]);
 
   const handleModalContentClick = (e) => {
     e.stopPropagation();
@@ -87,7 +88,20 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
             )}
           />
           <div className={styles.containerError}>
-            {errors.otp && <p className={styles.error}>{errors.otp.message}</p>}
+            {errors.otp ? (
+              <p className={styles.error}>{errors.otp.message}</p>
+            ) : (
+              feedback &&
+              feedback.message && (
+                <p
+                  className={
+                    feedback.type === "success" ? styles.success : styles.error
+                  }
+                >
+                  {feedback.message}
+                </p>
+              )
+            )}
           </div>
           <div className={styles.resendContainer}>
             {timer > 0 ? (
@@ -101,6 +115,7 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
                   type="button"
                   onClick={handleResendCode}
                   className={styles.resendButton}
+                  disabled={isLoading}
                 >
                   ارسال مجدد کد
                 </button>
@@ -108,8 +123,12 @@ function EnterOtpForm({ mobileNumber, onOtpSubmit, onBack}) {
               </p>
             )}
           </div>
-          <button type="submit" className={styles.submitButton}>
-            ورود به تورینو
+          <button
+            type="submit"
+            className={styles.submitButton}
+            disabled={isLoading}
+          >
+            {isLoading ? "در حال بررسی..." : "ورود به تورینو"}
           </button>
         </form>
       </div>
