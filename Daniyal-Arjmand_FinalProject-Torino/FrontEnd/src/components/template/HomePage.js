@@ -1,3 +1,4 @@
+import Advertisement from "../module/home/Advertisement";
 import Filter from "../module/home/Filter";
 import TourList from "../module/home/TourList";
 
@@ -6,6 +7,7 @@ export default function HomePage({ initialTours }) {
     <div>
       <Filter />
       <TourList initialTours={initialTours} />
+      <Advertisement />
     </div>
   );
 }
