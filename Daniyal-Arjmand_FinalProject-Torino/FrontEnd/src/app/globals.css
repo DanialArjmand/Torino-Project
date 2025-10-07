@@ -7,7 +7,7 @@
 @font-face {
   font-family: "Vazir-FD";
   src: url("/fonts/Vazir-FD.woff2") format("woff2"),
-       url("/fonts/Vazir-FD.woff") format("woff");
+    url("/fonts/Vazir-FD.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -19,4 +19,22 @@
   src: url("/fonts/YekanBakhBold.otf") format("otf");
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/Vazirmatn[wght].woff2") format("woff2 supports variations"),
+    url("/fonts/Vazirmatn[wght].woff2") format("woff2-variations"),
+    url("/fonts/variable/Vazirmatn[wght].ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IranianSans";
+  src: url("/fonts/irsans.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
