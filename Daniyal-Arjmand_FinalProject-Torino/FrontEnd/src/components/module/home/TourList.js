@@ -2,6 +2,7 @@
 
 import useSWR from "swr";
 import api from "@/lib/api/config";
+import styles from "@/components/module/home/TourList.module.css";
 
 const fetcher = (url) => api.get(url).then((res) => res.data);
 
@@ -29,6 +30,19 @@ function translateVehicle(vehicle) {
   return vehicleTranslations[lowerCaseVehicle] || vehicle;
 }
 
+function calculateTourDuration(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const diffTime = end.getTime() - start.getTime();
+
+  const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+  const duration = Math.round(diffDays) + 1;
+
+  return duration;
+}
+
 function formatToPersianNumber(number) {
   return new Intl.NumberFormat("fa-IR").format(number);
 }
@@ -50,28 +64,40 @@ function TourList({ initialTours }) {
     return <div>هیچ توری برای نمایش وجود ندارد.</div>;
 
   return (
-    <div>
-      <h2>همه تورها</h2>
+    <div className={styles.tourList}>
+      <h2>همه تور ها</h2>
+      <div className={styles.parentContainer}>
+        {tours.map((tour) => {
+          const formattedStartDate = formatToJalali(tour.startDate);
+          const optionsString = tour.options ? tour.options.join(" | ") : "";
+          const translatedVehicle = translateVehicle(tour.fleetVehicle);
+          const persianPrice = formatToPersianNumber(tour.price);
+          const duration = calculateTourDuration(tour.startDate, tour.endDate);
 
-      {tours.map((tour) => {
-        const formattedStartDate = formatToJalali(tour.startDate);
-        const optionsString = tour.options ? tour.options.join(" | ") : "";
-        const translatedVehicle = translateVehicle(tour.fleetVehicle);
-        const persianPrice = formatToPersianNumber(tour.price);
-
-        return (
-          <div key={tour.id}>
-            <div style={{ backgroundImage: `url(${tour.imageUrl})` }}>
-              {/* <img src={tour.image} alt={tour.title} /> */}
-              <h2>{tour.title}</h2>
-              <p>
-                {formattedStartDate}.{translatedVehicle}-{optionsString}
-              </p>
+          return (
+            <div className={styles.container} key={tour.id}>
+              <div className={styles.description}>
+                <div className={styles.image}>
+                  <img src={tour.image} alt={tour.title}/>
+                </div>
+                <div className={styles.text}>
+                  <h1>{tour.title}</h1>
+                  <p>
+                    {formattedStartDate}.{duration}-{translatedVehicle}-
+                    {optionsString}
+                  </p>
+                </div>
+              </div>
+              <div className={styles.reservation}>
+                <p>
+                  <span>{persianPrice}</span> تومان
+                </p>
+                <button>رزرو</button>
+              </div>
             </div>
-            {tour.title} - قیمت: {persianPrice} تومان
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
