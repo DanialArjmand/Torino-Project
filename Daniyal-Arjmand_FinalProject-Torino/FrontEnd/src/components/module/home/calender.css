@@ -1,0 +1,46 @@
+.rmdp-header-values {
+  color: #28a745 !important;
+  font-weight: bold;
+}
+
+.rmdp-week-day {
+  color: #333 !important;
+}
+
+.rmdp-arrow-container:hover {
+  background-color: #d4f0db !important;
+}
+
+.rmdp-week-day:last-child {
+  color: #28a745 !important;
+}
+
+.rmdp-day:not(.rmdp-disabled):not(.rmdp-today) {
+  color: #333;
+}
+
+.rmdp-arrow {
+  border-color: #28a745 !important;
+}
+
+.rmdp-day.rmdp-selected span {
+  background-color: #28a745 !important;
+  color: white !important;
+  box-shadow: none;
+}
+
+.rmdp-day.rmdp-today span {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.rmdp-day:not(.rmdp-disabled):not(.rmdp-selected) span:hover {
+  background-color: #d4f0db;
+}
+
+.rmdp-day.rmdp-today span {
+  background-color: #d4f0db !important;
+  border: 1px solid #28a745 !important;
+  color: #333 !important;
+  box-shadow: none !important;
+}

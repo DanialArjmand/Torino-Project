@@ -74,3 +74,62 @@
   font-size: 24px;
   cursor: pointer;
 }
+
+.customDate {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.positionRelative {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: right;
+  list-style: none;
+  margin-top: 13px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdownHeader {
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 300;
+  color: #888;
+  text-align: right;
+  background-color: #f8f8f8;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 0;
+  cursor: pointer;
+  text-align: right;
+  color: #282828;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dropdown li:hover {
+  background-color: #f5f5f5;
+}

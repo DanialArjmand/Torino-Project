@@ -4,50 +4,17 @@ import useSWR from "swr";
 import api from "@/lib/api/config";
 import styles from "@/components/module/home/TourList.module.css";
 
+import {
+  formatToJalali,
+  translateVehicle,
+  calculateTourDuration,
+  formatToPersianNumber,
+} from "@/lib/formatters";
+
 const fetcher = (url) => api.get(url).then((res) => res.data);
 
-function formatToJalali(dateString) {
-  if (!dateString) return "";
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat("fa-IR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
-}
 
-function translateVehicle(vehicle) {
-  const vehicleTranslations = {
-    suv: "شاسی بلند",
-    train: "قطار",
-    ship: "کشتی",
-    bus: "اتوبوس",
-    airplane: "هواپیما",
-  };
-
-  const lowerCaseVehicle = vehicle.toLowerCase();
-
-  return vehicleTranslations[lowerCaseVehicle] || vehicle;
-}
-
-function calculateTourDuration(startDate, endDate) {
-  const start = new Date(startDate);
-  const end = new Date(endDate);
-
-  const diffTime = end.getTime() - start.getTime();
-
-  const diffDays = diffTime / (1000 * 60 * 60 * 24);
-
-  const duration = Math.round(diffDays) + 1;
-
-  return duration;
-}
-
-function formatToPersianNumber(number) {
-  return new Intl.NumberFormat("fa-IR").format(number);
-}
-
-function TourList({ initialTours }) {
+function TourList({ tours: initialTours }) {
   const {
     data: tours,
     error,
@@ -78,7 +45,7 @@ function TourList({ initialTours }) {
             <div className={styles.container} key={tour.id}>
               <div className={styles.description}>
                 <div className={styles.image}>
-                  <img src={tour.image} alt={tour.title}/>
+                  <img src={tour.image} alt={tour.title} />
                 </div>
                 <div className={styles.text}>
                   <h1>{tour.title}</h1>

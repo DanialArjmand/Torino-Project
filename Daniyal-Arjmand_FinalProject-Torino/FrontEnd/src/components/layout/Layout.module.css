@@ -15,6 +15,7 @@
 
 .header a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .link {
@@ -27,7 +28,6 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   font-size: 16px;
   font-weight: 400;
-  cursor: pointer;
 }
 
 .link img {
