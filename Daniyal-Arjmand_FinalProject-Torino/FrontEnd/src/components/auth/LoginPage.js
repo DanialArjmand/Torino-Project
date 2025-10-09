@@ -4,9 +4,11 @@ import EnterOtpForm from "@/components/auth/EnterOtpForm";
 import { sendOtp, checkOtp } from "@/lib/api/config";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { useAuth } from "@/context/AuthContext";
 
 function LoginPage({ onClose }) {
   const router = useRouter();
+  const { login } = useAuth();
   const [step, setStep] = useState(1);
   const [mobile, setMobile] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -46,10 +48,12 @@ function LoginPage({ onClose }) {
     try {
       const response = await checkOtp(mobile, submittedOtp);
 
-      const { accessToken, refreshToken } = response.data;
+      const { accessToken, refreshToken, user } = response.data;
 
       Cookies.set("accessToken", accessToken, { expires: 1, secure: true });
       Cookies.set("refreshToken", refreshToken, { expires: 7, secure: true });
+
+      login(user);
 
       alert("شما با موفقیت وارد شدید!");
       onClose();
@@ -78,7 +82,6 @@ function LoginPage({ onClose }) {
       setTimeout(() => {
         setFeedback({ type: "", message: "" });
       }, 4000);
-      
     } catch (err) {
       setFeedback({
         type: "error",
