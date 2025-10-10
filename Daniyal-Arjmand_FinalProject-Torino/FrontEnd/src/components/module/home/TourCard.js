@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import styles from "./TourCard.module.css";
 import {
@@ -15,11 +16,18 @@ function TourCard({ tour, index }) {
     threshold: 0.1,
   });
 
+  const { days, nights } = calculateTourDuration(tour.startDate, tour.endDate);
+  const persianDays = formatToPersianNumber(days);
+  const persianNights = formatToPersianNumber(nights);
+  const durationText =
+    nights > 0
+      ? `${persianDays} روز و ${persianNights} شب`
+      : `${persianDays} روزه`;
+
   const formattedStartDate = formatToJalali(tour.startDate);
   const optionsString = tour.options ? tour.options.join(" | ") : "";
   const translatedVehicle = translateVehicle(tour.fleetVehicle);
   const persianPrice = formatToPersianNumber(tour.price);
-  const duration = calculateTourDuration(tour.startDate, tour.endDate);
 
   return (
     <div
@@ -35,8 +43,8 @@ function TourCard({ tour, index }) {
         </div>
         <div className={styles.text}>
           <h1>{tour.title}</h1>
-          <p>
-            {formattedStartDate}.{duration}-{translatedVehicle}-{optionsString}
+          <p dir="rtl">
+            {formattedStartDate}-{optionsString}-{translatedVehicle}
           </p>
         </div>
       </div>
@@ -45,7 +53,10 @@ function TourCard({ tour, index }) {
         <p>
           <span>{persianPrice}</span> تومان
         </p>
-        <button>رزرو</button>
+
+        <Link href={`/tour/${tour.id}`} className={styles.reserveButton}>
+          <button>رزرو</button>
+        </Link>
       </div>
     </div>
   );

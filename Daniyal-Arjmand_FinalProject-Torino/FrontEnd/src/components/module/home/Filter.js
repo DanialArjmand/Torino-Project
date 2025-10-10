@@ -23,12 +23,21 @@ const cityTranslations = {
   qom: "قم",
 };
 
-function Filter({ tours }) {
+function Filter({ tours, onSearch }) {
   const [date, setDate] = useState(null);
   const [origin, setOrigin] = useState("");
   const [destination, setDestination] = useState("");
   const [isOriginOpen, setIsOriginOpen] = useState(false);
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
+
+  const handleSearchClick = () => {
+    console.log("search clicked ✅", { origin, destination, date });
+    onSearch({
+      date,
+      origin,
+      destination,
+    });
+  };
 
   const popularCities = useMemo(() => {
     if (!tours || tours.length === 0) return [];
@@ -49,7 +58,7 @@ function Filter({ tours }) {
     return Object.keys(cityCounts)
       .sort((a, b) => cityCounts[b] - cityCounts[a])
       .slice(0, 5)
-      .map((cityKey) => cityTranslations[cityKey] || cityKey); // نام انگلیسی را به فارسی ترجمه کن
+      .map((cityKey) => cityTranslations[cityKey] || cityKey);
   }, [tours]);
 
   return (
@@ -61,7 +70,9 @@ function Filter({ tours }) {
         <span>تورینو</span> برگزار کننده بهترین تور های داخلی و خارجی
       </h2>
       <div className={styles.filterContainer}>
-        <button className={styles.button}>جستجو</button>
+        <button onClick={handleSearchClick} className={styles.button}>
+          جستجو
+        </button>
         <div className={styles.childDiv}>
           <DatePicker
             value={date}

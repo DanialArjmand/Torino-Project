@@ -21,12 +21,18 @@ export function translateVehicle(vehicle) {
 }
 
 export function calculateTourDuration(startDate, endDate) {
-  if (!startDate || !endDate) return 0;
+  if (!startDate || !endDate) {
+    return { days: 0, nights: 0 };
+  }
+
   const start = new Date(startDate);
   const end = new Date(endDate);
-  const diffTime = Math.abs(end.getTime() - start.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays + 1;
+
+  const diffTime = end.getTime() - start.getTime();
+  const nights = Math.round(diffTime / (1000 * 60 * 60 * 24));
+  const days = nights + 1;
+
+  return { days, nights };
 }
 
 export function formatToPersianNumber(number) {
