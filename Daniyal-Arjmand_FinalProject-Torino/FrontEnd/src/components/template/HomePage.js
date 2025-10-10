@@ -2,13 +2,17 @@
 
 import useSWR from "swr";
 import api from "@/lib/api/config";
-import Advertisement from "../module/home/Advertisement";
-import Description from "../module/home/Description";
-import Features from "../module/home/Features";
+import dynamic from "next/dynamic";
 import Filter from "../module/home/Filter";
-import TourList from "../module/home/TourList";
 
 const fetcher = (url) => api.get(url).then((res) => res.data);
+
+const TourList = dynamic(() => import("../module/home/TourList"), {
+  loading: () => <p>در حال بارگذاری تورها...</p>,
+});
+const Advertisement = dynamic(() => import("../module/home/Advertisement"));
+const Description = dynamic(() => import("../module/home/Description"));
+const Features = dynamic(() => import("../module/home/Features"));
 
 export default function HomePage({ initialTours }) {
   const { data: tours } = useSWR("/tour", fetcher, {

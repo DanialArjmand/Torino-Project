@@ -108,8 +108,6 @@ function Layout({ children }) {
       </header>
       <main className={styles.container}>{children}</main>
 
-      <hr className={styles.lineHr} />
-
       <footer className={styles.footer}>
         <div className={styles.license}>
           <div className={styles.supports}>
