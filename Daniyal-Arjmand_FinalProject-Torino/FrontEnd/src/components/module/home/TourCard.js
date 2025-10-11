@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { addToBasket } from "@/lib/api/config";
 import styles from "./TourCard.module.css";
 import {
   formatToJalali,
@@ -11,6 +15,10 @@ import {
 } from "@/lib/formatters";
 
 function TourCard({ tour, index }) {
+  const { user } = useAuth();
+  const [isAdding, setIsAdding] = useState(false);
+  const router = useRouter();
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -29,6 +37,27 @@ function TourCard({ tour, index }) {
   const translatedVehicle = translateVehicle(tour.fleetVehicle);
   const persianPrice = formatToPersianNumber(tour.price);
 
+  const handleAddToBasket = async (e) => {
+    e.stopPropagation();
+    if (!user) return;
+
+    setIsAdding(true);
+    try {
+      await addToBasket(tour.id);
+      alert(`"${tour.title}" با موفقیت به لیست شما اضافه شد.`);
+    } catch (error) {
+      console.error("خطا در افزودن به سبد خرید:", error);
+      alert("خطا در افزودن تور. لطفاً دوباره تلاش کنید.");
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
+  const handleReserveClick = (e) => {
+    e.stopPropagation();
+    router.push(`/booking/${tour.id}`);
+  };
+
   return (
     <div
       ref={ref}
@@ -37,26 +66,37 @@ function TourCard({ tour, index }) {
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className={styles.description}>
-        <div className={styles.image}>
-          <img src={tour.image} alt={tour.title} />
+      <Link href={`/tour/${tour.id}`} className={styles.cardLink}>
+        <div className={styles.description}>
+          <div className={styles.image}>
+            <img src={tour.image} alt={tour.title} />
+          </div>
+          <div className={styles.text}>
+            <h1>{tour.title}</h1>
+            <p dir="rtl">
+              {formattedStartDate}-{optionsString}-{translatedVehicle}
+            </p>
+          </div>
         </div>
-        <div className={styles.text}>
-          <h1>{tour.title}</h1>
-          <p dir="rtl">
-            {formattedStartDate}-{optionsString}-{translatedVehicle}
-          </p>
-        </div>
-      </div>
+      </Link>
 
       <div className={styles.reservation}>
         <p>
           <span>{persianPrice}</span> تومان
         </p>
-
-        <Link href={`/tour/${tour.id}`} className={styles.reserveButton}>
-          <button>رزرو</button>
-        </Link>
+        <div className={styles.buttonGroup}>
+          {user && (
+            <button
+              onClick={handleAddToBasket}
+              className={styles.addToListButton}
+              disabled={isAdding}
+              title="افزودن به لیست من"
+            >
+              {isAdding ? "..." : "سبد خرید"}
+            </button>
+          )}
+          <button onClick={handleReserveClick}>رزرو</button>
+        </div>
       </div>
     </div>
   );

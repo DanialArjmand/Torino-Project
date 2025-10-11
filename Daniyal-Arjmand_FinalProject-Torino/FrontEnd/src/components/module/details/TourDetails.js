@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./TourDetails.module.css";
 
 import {
@@ -48,7 +49,12 @@ function TourDetails({ tour }) {
             </div>
 
             <div className={styles.reservation}>
-              <button className={styles.button}>رزرو و خرید</button>
+              <Link
+                href={`/booking/${tour.id}`}
+                className={styles.reserveButton}
+              >
+                <button className={styles.button}>رزرو و خرید</button>
+              </Link>
 
               <div className={styles.price}>
                 <p dir="rtl">

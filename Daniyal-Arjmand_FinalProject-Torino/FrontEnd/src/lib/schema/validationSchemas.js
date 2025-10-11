@@ -14,3 +14,20 @@ export const otpSchema = yup.object().shape({
     .length(6, "کد تایید باید ۶ رقم باشد")
     .matches(/^[0-9]+$/, "فقط می‌توانید عدد وارد کنید"),
 });
+
+export const bookingSchema = yup.object().shape({
+  fullName: yup.string().required("نام و نام خانوادگی الزامی است"),
+  nationalCode: yup
+    .string()
+    .required("کد ملی الزامی است")
+    .length(10, "کد ملی باید ۱۰ رقم باشد")
+    .matches(/^[0-9]+$/, "کد ملی فقط می‌تواند شامل عدد باشد"),
+  gender: yup
+    .string()
+    .oneOf(["male", "female"], "لطفا جنسیت را انتخاب کنید")
+    .required("انتخاب جنسیت الزامی است"),
+  birthDate: yup
+    .date()
+    .required("تاریخ تولد الزامی است")
+    .typeError("فرمت تاریخ صحیح نیست"),
+});

@@ -20,6 +20,14 @@ export const refreshToken = (refreshTokenValue) => {
   return api.post("/auth/refresh-token", { refreshToken: refreshTokenValue });
 };
 
+export const createOrder = (bookingData) => {
+  return api.post('/order', bookingData);
+};
+
+export const addToBasket = (tourId) => {
+  return api.put(`/basket/${tourId}`);
+};
+
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get("accessToken");
