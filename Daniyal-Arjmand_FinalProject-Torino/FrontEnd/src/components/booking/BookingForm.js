@@ -9,6 +9,7 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/lib/api/config";
 import styles from "@/components/booking/BookingForm.module.css";
+import "@/components/module/home/calender.css";
 
 function BookingForm({ tourId }) {
   const router = useRouter();
@@ -40,25 +41,6 @@ function BookingForm({ tourId }) {
           <img src="/images/frame-black.svg" />
         </div>
         <div className={styles.information}>
-          <div className={styles.inputs}>
-            <select {...register("gender")} className={styles.customSelect}>
-              <option value="">جنسیت</option>
-              <option value="male">مرد</option>
-              <option value="female">زن</option>
-            </select>
-            {errors.gender && <p>{errors.gender.message}</p>}
-          </div>
-
-          <div className={styles.inputs}>
-            <input {...register("nationalCode")} placeholder="کدملی" />
-            {errors.nationalCode && <p>{errors.nationalCode.message}</p>}
-          </div>
-
-          <div className={styles.inputs}>
-            <input {...register("fullName")} placeholder="نام و نام خانوادگی" />
-            {errors.fullName && <p>{errors.fullName.message}</p>}
-          </div>
-
           <div className={styles.inputsData}>
             <Controller
               control={control}
@@ -80,6 +62,25 @@ function BookingForm({ tourId }) {
             {errors.birthDate && (
               <p className={styles.error}>{errors.birthDate.message}</p>
             )}
+          </div>
+
+          <div className={`${styles.inputs} ${styles.genderInput}`}>
+            <select {...register("gender")} className={styles.customSelect}>
+              <option value="">جنسیت</option>
+              <option value="male">مرد</option>
+              <option value="female">زن</option>
+            </select>
+            {errors.gender && <p>{errors.gender.message}</p>}
+          </div>
+
+          <div className={styles.inputs}>
+            <input {...register("nationalCode")} placeholder="کدملی" />
+            {errors.nationalCode && <p>{errors.nationalCode.message}</p>}
+          </div>
+
+          <div className={styles.inputs}>
+            <input {...register("fullName")} placeholder="نام و نام خانوادگی" />
+            {errors.fullName && <p>{errors.fullName.message}</p>}
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import api from "@/lib/api/config";
-import TourDetails from "@/components/module/details/TourDetails";
+import TourDetails from "@/components/details/TourDetails";
 
 async function getTourDetails(id) {
   try {

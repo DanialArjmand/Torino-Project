@@ -1,6 +1,11 @@
+.rmdp-day-picker {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
 .rmdp-header-values {
   color: #28a745 !important;
   font-weight: bold;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
 }
 
 .rmdp-week-day {

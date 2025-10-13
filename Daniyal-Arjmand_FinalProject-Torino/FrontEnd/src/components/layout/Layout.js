@@ -77,7 +77,7 @@ function Layout({ children }) {
                     </div>
                   </li>
                   <li className={styles.profileLink}>
-                    <Link href="/profile/my-tours"> اطلاعات حساب کاربری</Link>
+                    <Link href="/user/profile"> اطلاعات حساب کاربری</Link>
                     <img src="/images/profile.svg" alt="profile" />
                   </li>
                   <hr className={styles.lineHr} />

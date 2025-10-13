@@ -1,0 +1,271 @@
+.parentContainer {
+  width: 100%;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  padding: 35px 0 0;
+}
+
+.header {
+  width: 284px;
+  height: 170px;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  margin-left: 30px;
+}
+
+.headerItem {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16.7px 10px;
+  cursor: pointer;
+}
+
+.headerItem:hover {
+  background-color: #28a74540;
+  color: #28a745;
+  border-radius: 10px;
+}
+
+.headerItem:hover img {
+  color: #28a745;
+}
+
+.hrLine {
+  height: 0.5px;
+  background-color: #00000033;
+  border: none;
+  margin: 0 10px;
+}
+
+.headerItem img {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+
+.headerItem p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.main {
+  width: 872px;
+}
+
+.mainItem {
+  width: 100%;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.mainItem h2 {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 10px;
+  word-spacing: 2px;
+}
+
+.mainItemOne p {
+  font-size: 14px;
+  font-weight: 300;
+  word-spacing: 3px;
+}
+
+.mainItemOne span {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  color: #282828;
+}
+
+.mainItemOne {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.mainChildOne {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.mainChildTwo {
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
+}
+
+.mainChildThree {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+}
+
+.mainChildThree img {
+  cursor: pointer;
+}
+
+.mainChildThree button {
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  color: #009eca;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  padding: 5px 7px 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.mainHeaderInformation {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.editInformationButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+
+.editInformationButton img {
+  cursor: pointer;
+}
+
+.editInformationButton button {
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  color: #009eca;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  padding: 5px 7px 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.mainInformation {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.informationCustom {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 22%;
+}
+
+.informationCustomBirth {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.informationCustomBirth div {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.informationCustomBirth div p {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 300;
+  word-spacing: 3px;
+}
+
+.informationCustomBirth div span {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #282828;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.informationCustom div {
+  display: flex;
+  flex-direction: column;
+}
+
+.informationCustom div p {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 300;
+  word-spacing: 3px;
+}
+
+.informationCustom div span {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #282828;
+}
+
+.informationBank {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 35%;
+}
+
+.informationBank div {
+  display: flex;
+  flex-direction: column;
+}
+
+.informationBank div p {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 300;
+  word-spacing: 3px;
+}
+
+.informationBank div span {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #282828;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.informationBankCart {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.informationBankCart p {
+  padding: 10px 20px 0;
+  font-size: 14px;
+  font-weight: 300;
+  word-spacing: 3px;
+}
+
+.informationBankCart span {
+  padding: 10px 0 15px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #282828;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}

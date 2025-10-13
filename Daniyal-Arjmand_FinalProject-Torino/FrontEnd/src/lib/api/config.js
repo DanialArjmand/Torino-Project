@@ -21,11 +21,15 @@ export const refreshToken = (refreshTokenValue) => {
 };
 
 export const createOrder = (bookingData) => {
-  return api.post('/order', bookingData);
+  return api.post("/order", bookingData);
 };
 
 export const addToBasket = (tourId) => {
   return api.put(`/basket/${tourId}`);
+};
+
+export const updateUserProfile = (profileData) => {
+  return api.put("/user/profile", profileData);
 };
 
 api.interceptors.request.use(
@@ -36,7 +40,40 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
+  (error) => Promise.reject(error)
+);
+
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 403 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = Cookies.get("refreshToken");
+
+      if (refreshToken) {
+        try {
+          const res = await axios.post(
+            "http://localhost:6500/auth/refresh-token",
+            {
+              refreshToken,
+            }
+          );
+
+          const newAccessToken = res.data.accessToken;
+          Cookies.set("accessToken", newAccessToken);
+
+          originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+          return api(originalRequest); // retry original request
+        } catch (refreshError) {
+          Cookies.remove("accessToken");
+          Cookies.remove("refreshToken");
+          window.location.href = "/";
+        }
+      }
+    }
+
     return Promise.reject(error);
   }
 );

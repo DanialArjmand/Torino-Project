@@ -13,20 +13,25 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       const token = Cookies.get("accessToken");
-      if (token) {
-        try {
-          const response = await api.get("/user/profile");
-          setUser(response.data);
-        } catch (error) {
-          console.error("Token is invalid or expired", error);
-          Cookies.remove("accessToken");
-          Cookies.remove("refreshToken");
-        }
+      if (!token) {
+        setLoading(false);
+        return;
       }
-      setLoading(false);
+
+      try {
+        const response = await api.get("/user/profile");
+        setUser(response.data);
+      } catch (error) {
+        console.error("Token is invalid or expired", error);
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    checkUserLoggedIn();
+    setTimeout(checkUserLoggedIn, 100);
   }, []);
 
   const login = (userData) => {
