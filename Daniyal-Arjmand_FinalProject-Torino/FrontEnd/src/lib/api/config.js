@@ -65,7 +65,7 @@ api.interceptors.response.use(
           Cookies.set("accessToken", newAccessToken);
 
           originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-          return api(originalRequest); // retry original request
+          return api(originalRequest);
         } catch (refreshError) {
           Cookies.remove("accessToken");
           Cookies.remove("refreshToken");

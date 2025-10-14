@@ -205,6 +205,7 @@
   width: 246px;
   z-index: 100;
   animation: slideDown 0.3s ease-out forwards;
+  overflow: hidden;
 }
 
 .dropdownMenu li a,
@@ -225,7 +226,6 @@
 
 .dropdownMenu li:hover {
   background-color: #f4f4f4;
-  border-radius: 11px;
 }
 
 .profileLink {

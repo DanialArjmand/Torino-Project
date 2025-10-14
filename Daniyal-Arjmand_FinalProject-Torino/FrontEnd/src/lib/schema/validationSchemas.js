@@ -31,3 +31,15 @@ export const bookingSchema = yup.object().shape({
     .required("تاریخ تولد الزامی است")
     .typeError("فرمت تاریخ صحیح نیست"),
 });
+
+export const profileSchema = yup.object().shape({
+  email: yup.string().email("ایمیل معتبر نیست"),
+  firstName: yup.string(),
+  lastName: yup.string(),
+  nationalCode: yup.string().length(10, "کد ملی باید ۱۰ رقم باشد"),
+  birthDate: yup.date().typeError('فرمت تاریخ صحیح نیست'),
+  gender: yup.string(),
+  shaba: yup.string(),
+  accountNumber: yup.string(),
+  cardNumber: yup.string(),
+});
