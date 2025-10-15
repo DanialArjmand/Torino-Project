@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { toEnglishDigits } from "@/lib/formatters";
 
 export const mobileSchema = yup.object().shape({
   mobile: yup
@@ -19,6 +20,7 @@ export const bookingSchema = yup.object().shape({
   fullName: yup.string().required("نام و نام خانوادگی الزامی است"),
   nationalCode: yup
     .string()
+    .transform(toEnglishDigits)
     .required("کد ملی الزامی است")
     .length(10, "کد ملی باید ۱۰ رقم باشد")
     .matches(/^[0-9]+$/, "کد ملی فقط می‌تواند شامل عدد باشد"),
@@ -29,7 +31,7 @@ export const bookingSchema = yup.object().shape({
   birthDate: yup
     .date()
     .required("تاریخ تولد الزامی است")
-    .typeError("فرمت تاریخ صحیح نیست"),
+    .typeError("لطفا یک تاریخ معتبر انتخاب کنید"),
 });
 
 export const profileSchema = yup.object().shape({
@@ -37,7 +39,7 @@ export const profileSchema = yup.object().shape({
   firstName: yup.string(),
   lastName: yup.string(),
   nationalCode: yup.string().length(10, "کد ملی باید ۱۰ رقم باشد"),
-  birthDate: yup.date().typeError('فرمت تاریخ صحیح نیست'),
+  birthDate: yup.date().typeError("فرمت تاریخ صحیح نیست"),
   gender: yup.string(),
   shaba: yup.string(),
   accountNumber: yup.string(),

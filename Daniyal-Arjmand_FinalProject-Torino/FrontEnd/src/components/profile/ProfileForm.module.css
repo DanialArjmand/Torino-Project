@@ -451,3 +451,32 @@
   border: none;
   margin: 10px 0;
 }
+
+.customGender {
+  direction: rtl;
+  text-align: right;
+  width: 100%;
+  padding: 0 10px;
+  margin: 0 7px;
+  background-image: url("/images/arrow-down-black.svg");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 10px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.myToursTab {
+  border-radius: 10px;
+  border: 1px solid #00000033;
+  padding: 15px 20px;
+}
+
+.tourCard {
+  width: 100%;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}

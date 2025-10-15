@@ -32,6 +32,14 @@ export const updateUserProfile = (profileData) => {
   return api.put("/user/profile", profileData);
 };
 
+export const getPurchasedTours = () => {
+  return api.get("/user/tours");
+};
+
+export const getBasket = () => {
+  return api.get("/basket");
+};
+
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get("accessToken");

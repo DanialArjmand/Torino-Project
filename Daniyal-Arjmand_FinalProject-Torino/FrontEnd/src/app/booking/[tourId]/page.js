@@ -1,10 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import api from "@/lib/api/config";
-import BookingForm from "@/components/booking/BookingForm";
-import BookingInformation from "@/components/booking/BookingInformation";
-
-import styles from "@/app/booking/[tourId]/page.module.css"
+import BookingWrapper from "@/components/booking/BookingWrapper";
 
 async function getTourDetails(id) {
   try {
@@ -28,10 +25,5 @@ export default async function BookingPage({ params }) {
     return <div>تور مورد نظر یافت نشد.</div>;
   }
 
-  return (
-    <div className={styles.content}>
-      <BookingInformation tour={tour} />
-      <BookingForm tourId={tourId} />
-    </div>
-  );
+  return <BookingWrapper tour={tour} />;
 }

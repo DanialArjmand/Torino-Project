@@ -20,6 +20,18 @@ export function translateVehicle(vehicle) {
   return vehicleTranslations[lowerCaseVehicle] || vehicle;
 }
 
+const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+const englishDigits = "0123456789";
+
+export function toEnglishDigits(str) {
+  if (!str) return str;
+  let result = String(str);
+  for (let i = 0; i < 10; i++) {
+    result = result.replace(new RegExp(persianDigits[i], "g"), englishDigits[i]);
+  }
+  return result;
+}
+
 export function calculateTourDuration(startDate, endDate) {
   if (!startDate || !endDate) {
     return { days: 0, nights: 0 };

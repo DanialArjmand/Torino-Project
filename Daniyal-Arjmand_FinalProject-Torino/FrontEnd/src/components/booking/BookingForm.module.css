@@ -97,5 +97,16 @@
 
 .genderInput {
   order: 4;
-  margin-top: 25px;
+}
+
+.parentError {
+  height: 25px;
+}
+
+.error {
+  color: red;
+  text-align: right;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  padding: 0 10px;
+  font-size: 14px;
 }

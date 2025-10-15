@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./TourDetails.module.css";
 
@@ -7,8 +9,18 @@ import {
   translateVehicle,
   calculateTourDuration,
 } from "@/lib/formatters";
+import { addToBasket } from "@/lib/api/config";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { useModal } from "@/context/ModalContext";
 
 function TourDetails({ tour }) {
+  const router = useRouter();
+  const { user } = useAuth();
+  const { openModal } = useModal();
+  const [isBooking, setIsBooking] = useState(false);
+
   const persianPrice = formatToPersianNumber(tour.price);
   const formattedStartDate = formatToJalali(tour.startDate);
   const formattedEndDate = formatToJalali(tour.endDate);
@@ -24,6 +36,25 @@ function TourDetails({ tour }) {
   const persianCapacity = formatToPersianNumber(tour.capacity);
   const persianAvailableSeats = formatToPersianNumber(tour.availableSeats);
 
+  const handleReserveClick = async () => {
+    if (isBooking) return;
+
+    if (!user) {
+      openModal();
+      return;
+    }
+
+    setIsBooking(true);
+    try {
+      await addToBasket(tour.id);
+      router.push(`/booking/${tour.id}`);
+    } catch (error) {
+      console.error("خطا در افزودن به سبد خرید:", error);
+      alert("خطایی رخ داد. لطفاً دوباره تلاش کنید.");
+    } finally {
+      setIsBooking(false);
+    }
+  };
   return (
     <div className={styles.parentContainer}>
       <div className={styles.container}>
@@ -53,7 +84,13 @@ function TourDetails({ tour }) {
                 href={`/booking/${tour.id}`}
                 className={styles.reserveButton}
               >
-                <button className={styles.button}>رزرو و خرید</button>
+                <button
+                  className={styles.button}
+                  onClick={handleReserveClick}
+                  disabled={isBooking}
+                >
+                  رزرو و خرید
+                </button>
               </Link>
 
               <div className={styles.price}>

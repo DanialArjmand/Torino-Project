@@ -1,11 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
-import { addToBasket } from "@/lib/api/config";
 import styles from "./TourCard.module.css";
 import {
   formatToJalali,
@@ -15,8 +12,6 @@ import {
 } from "@/lib/formatters";
 
 function TourCard({ tour, index }) {
-  const { user } = useAuth();
-  const [isAdding, setIsAdding] = useState(false);
   const router = useRouter();
 
   const { ref, inView } = useInView({
@@ -36,22 +31,6 @@ function TourCard({ tour, index }) {
   const optionsString = tour.options ? tour.options.join(" | ") : "";
   const translatedVehicle = translateVehicle(tour.fleetVehicle);
   const persianPrice = formatToPersianNumber(tour.price);
-
-  const handleAddToBasket = async (e) => {
-    e.stopPropagation();
-    if (!user) return;
-
-    setIsAdding(true);
-    try {
-      await addToBasket(tour.id);
-      alert(`"${tour.title}" با موفقیت به لیست شما اضافه شد.`);
-    } catch (error) {
-      console.error("خطا در افزودن به سبد خرید:", error);
-      alert("خطا در افزودن تور. لطفاً دوباره تلاش کنید.");
-    } finally {
-      setIsAdding(false);
-    }
-  };
 
   const handleReserveClick = (e) => {
     e.stopPropagation();
@@ -85,16 +64,6 @@ function TourCard({ tour, index }) {
           <span>{persianPrice}</span> تومان
         </p>
         <div className={styles.buttonGroup}>
-          {user && (
-            <button
-              onClick={handleAddToBasket}
-              className={styles.addToListButton}
-              disabled={isAdding}
-              title="افزودن به لیست من"
-            >
-              {isAdding ? "..." : "سبد خرید"}
-            </button>
-          )}
           <button onClick={handleReserveClick}>رزرو</button>
         </div>
       </div>

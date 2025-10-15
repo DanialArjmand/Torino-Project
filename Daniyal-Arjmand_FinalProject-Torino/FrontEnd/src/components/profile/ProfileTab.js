@@ -147,7 +147,7 @@ function ProfileTab({ initialData }) {
                 <input {...register("lastName")} placeholder="نام خانوادگی" />
                 <input {...register("nationalCode")} placeholder="کد ملی" />
                 <input type="date" {...register("birthDate")} />
-                <select {...register("gender")}>
+                <select {...register("gender")} className={styles.customGender}>
                   <option value="">جنسیت</option>
                   <option value="male">مرد</option>
                   <option value="female">زن</option>
