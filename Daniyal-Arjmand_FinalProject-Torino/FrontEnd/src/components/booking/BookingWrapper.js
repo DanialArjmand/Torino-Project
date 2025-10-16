@@ -24,7 +24,7 @@ function BookingWrapper({ tour }) {
     try {
       await createOrder({ ...data, tourId: tour.id });
       alert("تور شما با موفقیت رزرو شد!");
-      router.push("/profile");
+      router.push("/user/profile");
     } catch (error) {
       alert("خطا در ثبت رزرو. لطفاً دوباره تلاش کنید.");
       console.error(error);

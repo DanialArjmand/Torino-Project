@@ -2,20 +2,25 @@
 
 import useSWR from "swr";
 import { getPurchasedTours } from "@/lib/api/config";
+import { translateCityById } from "@/lib/translators";
 import styles from "./ProfileForm.module.css";
-import { formatToJalali, formatToPersianNumber } from "@/lib/formatters";
+import {
+  formatToJalali,
+  formatToPersianNumber,
+  translateCity,
+} from "@/lib/formatters";
 
 const getVehicleInfo = (vehicle) => {
   const lowerCaseVehicle = vehicle?.toLowerCase() || "";
   switch (lowerCaseVehicle) {
     case "airplane":
-      return { text: "سفر با هواپیما", icon: "/images/airplane-icon.svg" };
+      return { text: "سفر با هواپیما", icon: "/images/airplane.svg" };
     case "ship":
-      return { text: "سفر با کشتی", icon: "/images/ship-icon.svg" };
+      return { text: "سفر با کشتی", icon: "/images/ship.svg" };
     case "bus":
-      return { text: "سفر با اتوبوس", icon: "/images/bus-icon.svg" };
+      return { text: "سفر با اتوبوس", icon: "/images/bus-empty.svg" };
     default:
-      return { text: "سفر", icon: "/images/default-vehicle.svg" };
+      return { text: "سفر", icon: "/images/bus-empty.svg" };
   }
 };
 
@@ -30,7 +35,7 @@ const getTourStatus = (startDate, endDate) => {
   if (now >= start && now <= end) {
     return { text: "در حال برگزاری", className: styles.statusOngoing };
   }
-  return { text: "آینده", className: styles.statusUpcoming };
+  return { text: "برگزاری بزودی ", className: styles.statusUpcoming };
 };
 
 const fetcher = () => getPurchasedTours().then((res) => res.data);
@@ -69,37 +74,43 @@ function MyToursTab() {
                 <img src={vehicle.icon} alt={vehicle.text} />
                 <span>{vehicle.text}</span>
               </div> */}
-              <div>
-                <h3>{tour.title}</h3>
+              <div className={styles.itemHeader}>
+                <h2>{tour.title}</h2>
                 <img src="/images/sun-fog-empty.svg" />
               </div>
-              <div></div>
-              <div></div>
+              <div className={styles.itemHeader}>
+                <span>سفر با هواپیما</span>
+                <img src={vehicle.icon} alt={vehicle.text} />
+              </div>
+              <div className={styles.itemHeaderStatus}>
+                <div className={`${styles.statusBadge} ${status.className}`}>
+                  {status.text}
+                </div>
+              </div>
             </div>
 
             <div className={styles.tourDetails}>
               <div className={styles.tourInfo}>
                 <p>
-                  تاریخ برگشت: <span>{formatToJalali(tour.endDate)}</span>
+                  {`${translateCityById(tour.origin.id)} به ${translateCityById(
+                    tour.destination.id
+                  )}`}
+                  <span>{formatToJalali(tour.startDate)}</span>
                 </p>
                 <p>
-                  تاریخ رفت: <span>{formatToJalali(tour.startDate)}</span>
+                  تاریخ برگشت . <span>{formatToJalali(tour.endDate)}</span>
                 </p>
               </div>
+              <hr className={styles.lineHr} />
               <div className={styles.tourMeta}>
-                <p>
+                <p className={styles.tourId}>
                   شماره تور:
                   <span>{tour.id.substring(0, 8).toUpperCase()}</span>
                 </p>
-                <p>
+                <p className={styles.tourPrice}>
                   مبلغ پرداخت شده:
                   <span>{formatToPersianNumber(tour.price)} تومان</span>
                 </p>
-              </div>
-            </div>
-            <div className={styles.tourFooter}>
-              <div className={`${styles.statusBadge} ${status.className}`}>
-                {status.text}
               </div>
             </div>
           </div>

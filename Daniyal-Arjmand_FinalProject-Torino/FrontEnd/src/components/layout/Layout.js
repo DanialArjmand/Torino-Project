@@ -102,7 +102,7 @@ function Layout({ children }) {
           <a>تماس با ما</a>
           <a>درباره ما</a>
           <a>خدمات گردشگری</a>
-          <a>صفحه اصلی</a>
+          <Link href={"/"}>صفحه اصلی </Link>
           <img src="/images/Torino1.svg" alt="Torino Logo" />
         </div>
       </header>

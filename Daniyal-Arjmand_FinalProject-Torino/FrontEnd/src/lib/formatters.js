@@ -2,10 +2,17 @@ export function formatToJalali(dateString) {
   if (!dateString) return "";
   const date = new Date(dateString);
   return new Intl.DateTimeFormat("fa-IR", {
+    weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
   }).format(date);
+}
+
+export function translateCity(cityName) {
+  if (!cityName) return "";
+  const lowerCaseCity = cityName.toLowerCase();
+  return cityTranslations[lowerCaseCity] || cityName;
 }
 
 export function translateVehicle(vehicle) {
@@ -27,7 +34,10 @@ export function toEnglishDigits(str) {
   if (!str) return str;
   let result = String(str);
   for (let i = 0; i < 10; i++) {
-    result = result.replace(new RegExp(persianDigits[i], "g"), englishDigits[i]);
+    result = result.replace(
+      new RegExp(persianDigits[i], "g"),
+      englishDigits[i]
+    );
   }
   return result;
 }
