@@ -4,11 +4,7 @@ import useSWR from "swr";
 import { getPurchasedTours } from "@/lib/api/config";
 import { translateCityById } from "@/lib/translators";
 import styles from "./ProfileForm.module.css";
-import {
-  formatToJalali,
-  formatToPersianNumber,
-  translateCity,
-} from "@/lib/formatters";
+import { formatToJalali, formatToPersianNumber } from "@/lib/formatters";
 
 const getVehicleInfo = (vehicle) => {
   const lowerCaseVehicle = vehicle?.toLowerCase() || "";
@@ -66,20 +62,12 @@ function MyToursTab() {
         return (
           <div key={`${tour.id}-${index}`} className={styles.tourCard}>
             <div className={styles.tourHeader}>
-              {/* <div className={styles.tourTitle}>
-                <h3>{tour.title}</h3>
-                <p>{`${tour.origin.name} به ${tour.destination.name}`}</p>
-              </div>
-              <div className={styles.tourVehicle}>
-                <img src={vehicle.icon} alt={vehicle.text} />
-                <span>{vehicle.text}</span>
-              </div> */}
               <div className={styles.itemHeader}>
                 <h2>{tour.title}</h2>
                 <img src="/images/sun-fog-empty.svg" />
               </div>
               <div className={styles.itemHeader}>
-                <span>سفر با هواپیما</span>
+                <span>{vehicle.text}</span>
                 <img src={vehicle.icon} alt={vehicle.text} />
               </div>
               <div className={styles.itemHeaderStatus}>
@@ -95,21 +83,27 @@ function MyToursTab() {
                   {`${translateCityById(tour.origin.id)} به ${translateCityById(
                     tour.destination.id
                   )}`}
+                  <span className={styles.dat}>.</span>
                   <span>{formatToJalali(tour.startDate)}</span>
                 </p>
                 <p>
-                  تاریخ برگشت . <span>{formatToJalali(tour.endDate)}</span>
+                  تاریخ برگشت
+                  <span className={styles.dat}>.</span>
+                  <span>{formatToJalali(tour.endDate)}</span>
                 </p>
               </div>
               <hr className={styles.lineHr} />
               <div className={styles.tourMeta}>
                 <p className={styles.tourId}>
-                  شماره تور:
+                  شماره تور
                   <span>{tour.id.substring(0, 8).toUpperCase()}</span>
                 </p>
                 <p className={styles.tourPrice}>
-                  مبلغ پرداخت شده:
-                  <span>{formatToPersianNumber(tour.price)} تومان</span>
+                  مبلغ پرداخت شده
+                  <span className={styles.tourPriceLabel1}>
+                    {formatToPersianNumber(tour.price)}{" "}
+                  </span>
+                  <span className={styles.tourPriceLabel2}>تومان</span>
                 </p>
               </div>
             </div>

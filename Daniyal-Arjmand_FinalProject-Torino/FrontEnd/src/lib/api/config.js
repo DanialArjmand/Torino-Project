@@ -40,6 +40,15 @@ export const getBasket = () => {
   return api.get("/basket");
 };
 
+export const getUserProfile = async () => {
+  try {
+    const response = await api.get("/user/profile");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 api.interceptors.request.use(
   (config) => {
     const token = Cookies.get("accessToken");

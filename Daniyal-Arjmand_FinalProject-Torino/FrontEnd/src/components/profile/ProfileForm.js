@@ -7,7 +7,7 @@ import ProfileTab from "./ProfileTab";
 import MyToursTab from "./MyToursTab";
 import TransactionsTab from "./TransactionsTab";
 
-function ProfileForm({ initialData }) {
+function ProfileForm({ initialData, onUpdate }) {
   const [activeTab, setActiveTab] = useState("profile");
 
   return (
@@ -16,7 +16,9 @@ function ProfileForm({ initialData }) {
         <ProfileHeader activeTab={activeTab} setActiveTab={setActiveTab} />
 
         <main className={styles.main}>
-          {activeTab === "profile" && <ProfileTab initialData={initialData} />}
+          {activeTab === "profile" && (
+            <ProfileTab initialData={initialData} onUpdate={onUpdate} />
+          )}
           {activeTab === "tours" && <MyToursTab />}
           {activeTab === "transactions" && <TransactionsTab />}
         </main>

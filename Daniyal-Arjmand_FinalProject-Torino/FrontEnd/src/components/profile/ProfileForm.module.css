@@ -490,7 +490,7 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  padding: 13px;
+  padding: 13px 15px;
 }
 
 .itemHeader {
@@ -501,11 +501,13 @@
 .itemHeader h2 {
   font-size: 16px;
   font-weight: 400;
+  word-spacing: 2px;
 }
 
 .itemHeader span {
   font-size: 16px;
   font-weight: 400;
+  word-spacing: 2px;
 }
 
 .itemHeader img {
@@ -548,6 +550,24 @@
   padding: 10px;
 }
 
+.tourInfo p {
+  width: 40%;
+  direction: rtl;
+  font-size: 16px;
+  font-weight: 600;
+  word-spacing: 3px;
+  padding: 0 10px 0 0px;
+}
+
+.tourInfo span {
+  direction: rtl;
+  font-size: 14px;
+  font-weight: 400;
+  color: #00000099;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  word-spacing: 0;
+}
+
 .lineHr {
   background-color: #00000033;
   border: none;
@@ -565,8 +585,53 @@
 .tourId {
   padding: 5px 10px 5px 20px;
   border-left: 1px solid #00000033;
+  direction: rtl;
+  color: #00000080;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.tourId span {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  color: #282828;
+  padding-right: 10px;
 }
 
 .tourPrice {
+  font-size: 16px;
+  font-weight: 400;
   padding: 5px 20px;
+  color: #00000080;
+}
+
+.tourPriceLabel1 {
+  color: #282828;
+  padding-right: 10px;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tourPriceLabel2 {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.dat {
+  padding: 0 7px;
+}
+
+.customDateInput {
+  width: 100%;
+  height: 48px;
+  padding-right: 30px !important;
+  cursor: pointer;
+  background-image: url("/images/calendar.svg");
+  background-repeat: no-repeat;
+  background-position: right 5px center;
 }

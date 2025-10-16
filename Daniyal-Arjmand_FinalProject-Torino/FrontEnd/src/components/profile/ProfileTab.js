@@ -1,13 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@/lib/schema/validationSchemas";
 import { updateUserProfile } from "@/lib/api/config";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 import styles from "./ProfileForm.module.css";
+import "@/components/module/home/calender.css";
 
-function ProfileTab({ initialData }) {
+function ProfileTab({ initialData, onUpdate }) {
   const [isPersonalEditing, setIsPersonalEditing] = useState(false);
   const [isBankEditing, setIsBankEditing] = useState(false);
   const [isContactEditing, setIsContactEditing] = useState(false);
@@ -16,6 +20,7 @@ function ProfileTab({ initialData }) {
     register,
     reset,
     trigger,
+    control,
     getValues,
     formState: { errors, isSubmitting },
   } = useForm({
@@ -27,10 +32,10 @@ function ProfileTab({ initialData }) {
     try {
       await updateUserProfile(data);
       alert("اطلاعات با موفقیت ذخیره شد.");
+      onUpdate();
       setIsPersonalEditing(false);
       setIsBankEditing(false);
       setIsContactEditing(false);
-      window.location.reload();
     } catch (error) {
       alert("خطا در ذخیره اطلاعات.");
       console.error(error);
@@ -146,7 +151,30 @@ function ProfileTab({ initialData }) {
                 <input {...register("firstName")} placeholder="نام" />
                 <input {...register("lastName")} placeholder="نام خانوادگی" />
                 <input {...register("nationalCode")} placeholder="کد ملی" />
-                <input type="date" {...register("birthDate")} />
+                <div>
+                  <Controller
+                    control={control}
+                    name="birthDate"
+                    render={({ field }) => (
+                      <DatePicker
+                        value={field.value}
+                        onChange={(dateObject) => {
+                          field.onChange(
+                            dateObject ? dateObject.toDate() : null
+                          );
+                        }}
+                        calendar={persian}
+                        locale={persian_fa}
+                        format="YYYY/MM/DD"
+                        placeholder="تاریخ تولد"
+                        inputClass={styles.customDateInput}
+                      />
+                    )}
+                  />
+                  {errors.birthDate && (
+                    <p className={styles.error}>{errors.birthDate.message}</p>
+                  )}
+                </div>
                 <select {...register("gender")} className={styles.customGender}>
                   <option value="">جنسیت</option>
                   <option value="male">مرد</option>

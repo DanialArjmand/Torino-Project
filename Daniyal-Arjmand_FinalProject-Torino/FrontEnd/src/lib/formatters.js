@@ -1,12 +1,13 @@
 export function formatToJalali(dateString) {
   if (!dateString) return "";
   const date = new Date(dateString);
-  return new Intl.DateTimeFormat("fa-IR", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
+  
+  const weekday = new Intl.DateTimeFormat('fa-IR', { weekday: 'long' }).format(date);
+  const day = new Intl.DateTimeFormat('fa-IR', { day: 'numeric' }).format(date);
+  const month = new Intl.DateTimeFormat('fa-IR', { month: 'long' }).format(date);
+  const year = new Intl.DateTimeFormat('fa-IR', { year: 'numeric' }).format(date);
+
+  return `${weekday}، ${day} ${month} ${year}`;
 }
 
 export function translateCity(cityName) {
