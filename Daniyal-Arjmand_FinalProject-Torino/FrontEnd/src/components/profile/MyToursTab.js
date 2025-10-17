@@ -44,13 +44,25 @@ function MyToursTab() {
   } = useSWR("/user/tours", fetcher);
 
   if (isLoading) {
-    return <p>در حال بارگذاری سفرهای شما...</p>;
+    return (
+      <div className={styles.errorTours}>
+        <p>در حال بارگذاری سفرهای شما...</p>
+      </div>
+    );
   }
   if (error) {
-    return <p>خطا در دریافت اطلاعات. لطفاً دوباره تلاش کنید.</p>;
+    return (
+      <div className={styles.errorTours}>
+        <p>خطا در دریافت اطلاعات. لطفاً دوباره تلاش کنید</p>
+      </div>
+    );
   }
   if (!purchasedTours || purchasedTours.length === 0) {
-    return <p>شما هنوز هیچ توری خریداری نکرده‌اید.</p>;
+    return (
+      <div className={styles.errorTours}>
+        <p>شما هنوز هیچ توری خریداری نکرده‌اید</p>
+      </div>
+    );
   }
 
   return (

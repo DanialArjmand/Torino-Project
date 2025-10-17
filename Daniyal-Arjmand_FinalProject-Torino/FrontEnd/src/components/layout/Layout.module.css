@@ -30,9 +30,19 @@
   font-weight: 400;
 }
 
-
-.link a:visited {
+.link .activeLink {
   color: #28a745;
+}
+
+.link a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #282828;
+  transition: color 0.2s;
+}
+
+.link a:hover {
+  color: #959595;
 }
 
 .link img {
@@ -275,7 +285,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid #0000001F;
+  border-top: 1px solid #0000001f;
 }
 
 .logoutButtonContainer img {

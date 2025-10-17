@@ -36,12 +36,28 @@ export const bookingSchema = yup.object().shape({
 
 export const profileSchema = yup.object().shape({
   email: yup.string().email("ایمیل معتبر نیست"),
-  firstName: yup.string(),
-  lastName: yup.string(),
-  nationalCode: yup.string().length(10, "کد ملی باید ۱۰ رقم باشد"),
+  name: yup
+    .string()
+    .max(40, "نام نمی‌تواند بیشتر از ۴۰ کاراکتر باشد")
+    .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, "نام فقط می‌تواند شامل حروف باشد"),
+  nationalCode: yup
+    .string()
+    .length(10, "کد ملی باید ۱۰ رقم باشد")
+    .matches(/^[0-9۰-۹]+$/, "کد ملی فقط می‌تواند شامل عدد باشد"),
   birthDate: yup.date().typeError("فرمت تاریخ صحیح نیست"),
-  gender: yup.string(),
-  shaba: yup.string(),
-  accountNumber: yup.string(),
-  cardNumber: yup.string(),
+  gender: yup.string().oneOf(["male", "female"], "لطفا جنسیت را انتخاب کنید"),
+  shaba: yup
+    .string()
+    .optional()
+    .length(24, "شماره شبا باید ۲۴ رقم باشد")
+    .matches(/^[0-9۰-۹]+$/, "شماره شبا فقط می‌تواند شامل عدد باشد"),
+  accountNumber: yup
+    .string()
+    .optional()
+    .matches(/^[0-9۰-۹]+$/, "شماره حساب فقط می‌تواند شامل عدد باشد"),
+  cardNumber: yup
+    .string()
+    .optional()
+    .length(16, "شماره کارت باید ۱۶ رقم باشد")
+    .matches(/^[0-9۰-۹]+$/, "شماره کارت فقط می‌تواند شامل عدد باشد"),
 });

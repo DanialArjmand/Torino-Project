@@ -4,7 +4,9 @@ import useSWR from "swr";
 import { getUserProfile } from "@/lib/api/config";
 import ProfileForm from "./ProfileForm";
 
-const fetcher = () => getUserProfile();
+import styles from "@/components/profile/ProfileForm.module.css";
+
+const fetcher = async () => await getUserProfile();
 
 function ProfilePageClient() {
   const {
@@ -14,10 +16,28 @@ function ProfilePageClient() {
     mutate,
   } = useSWR("/user/profile", fetcher);
 
-  if (isLoading) return <div>در حال بارگذاری اطلاعات...</div>;
-  if (error || !user) return <div>خطا در دریافت اطلاعات.</div>;
+  if (isLoading)
+    return (
+      <div className={styles.loadingData}>
+        <p>در حال بارگذاری اطلاعات...</p>
+      </div>
+    );
+  if (error)
+    return (
+      <div className={styles.loadingData}>
+        <p>خطا در دریافت اطلاعات</p>
+      </div>
+    );
 
-  return <ProfileForm initialData={user} onUpdate={mutate} />;
+  return (
+    <ProfileForm
+      key={user?.id || "user-form"}
+      initialData={user}
+      onUpdate={async (updatedUser) => {
+        await mutate(updatedUser, false);
+      }}
+    />
+  );
 }
 
 export default ProfilePageClient;

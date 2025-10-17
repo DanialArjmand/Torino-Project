@@ -336,7 +336,6 @@
 
 .editView {
   display: flex;
-  align-items: center;
   gap: 10px;
 }
 
@@ -383,7 +382,7 @@
   font-weight: 400;
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   padding: 0 10px;
-  margin: 0 5px 15px 20px;
+  margin: 0 5px 0 20px;
 }
 
 .editingGrid select {
@@ -392,7 +391,7 @@
   border: 1px solid #00000080;
   border-radius: 5px;
   text-align: right;
-  margin: 0 5px 15px 0;
+  margin: 0 5px 0 0;
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
 }
 
@@ -634,4 +633,39 @@
   background-image: url("/images/calendar.svg");
   background-repeat: no-repeat;
   background-position: right 5px center;
+}
+
+.errorTours {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #00000033;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+}
+
+.loadingData {
+  width: 100%;
+  height: 200px;
+  margin-top: 30px;
+  border-radius: 10px;
+  border: 1px solid #00000033;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+}
+
+.parentError {
+  height: 25px;
+}
+
+.error {
+  color: red;
+  text-align: right;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  padding: 0 10px;
+  font-size: 14px;
 }

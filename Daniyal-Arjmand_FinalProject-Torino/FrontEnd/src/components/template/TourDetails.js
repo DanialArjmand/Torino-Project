@@ -9,6 +9,7 @@ import {
   translateVehicle,
   calculateTourDuration,
 } from "@/lib/formatters";
+import { translateCityById } from "@/lib/translators";
 import { addToBasket } from "@/lib/api/config";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -107,7 +108,7 @@ function TourDetails({ tour }) {
         </div>
 
         <div className={styles.TourDescription}>
-          <div className={styles.content}>
+          <div className={styles.contentBimeh}>
             <div>
               <p>بیمه</p>
               <img src="/images/security.svg" alt="security" />
@@ -152,7 +153,7 @@ function TourDetails({ tour }) {
               <p>مقصد</p>
               <img src="/images/location.svg" alt="location" />
             </div>
-            <span>{tour.destination.name}</span>
+            <span>{translateCityById(tour.destination.id)}</span>
           </div>
 
           <div className={styles.lastContent}>
@@ -160,7 +161,7 @@ function TourDetails({ tour }) {
               <p>مبدا</p>
               <img src="/images/routing-2.svg" alt="Routing" />
             </div>
-            <span>{tour.origin.name}</span>
+            <span>{translateCityById(tour.origin.id)}</span>
           </div>
         </div>
       </div>

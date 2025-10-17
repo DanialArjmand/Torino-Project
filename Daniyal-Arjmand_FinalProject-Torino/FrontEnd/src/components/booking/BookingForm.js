@@ -55,12 +55,11 @@ function BookingForm({ register, control, errors }) {
 
         <div className={styles.inputs}>
           <input {...register("nationalCode")} placeholder="کدملی" />
+
           <div className={styles.parentError}>
-            <div className={styles.parentError}>
-              {errors.nationalCode && (
-                <p className={styles.error}>{errors.nationalCode.message}</p>
-              )}
-            </div>
+            {errors.nationalCode && (
+              <p className={styles.error}>{errors.nationalCode.message}</p>
+            )}
           </div>
         </div>
 

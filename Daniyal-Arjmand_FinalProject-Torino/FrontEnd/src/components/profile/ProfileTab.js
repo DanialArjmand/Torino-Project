@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@/lib/schema/validationSchemas";
@@ -28,11 +28,16 @@ function ProfileTab({ initialData, onUpdate }) {
     defaultValues: initialData,
   });
 
+  useEffect(() => {
+    reset(initialData);
+  }, [initialData, reset]);
+
   const onSubmit = async (data) => {
+    console.log("📤 داده‌ای که برای آپدیت می‌فرستم:", data);
     try {
-      await updateUserProfile(data);
+      const response = await updateUserProfile(data);
       alert("اطلاعات با موفقیت ذخیره شد.");
-      onUpdate();
+      onUpdate(response.data);
       setIsPersonalEditing(false);
       setIsBankEditing(false);
       setIsContactEditing(false);
@@ -50,24 +55,24 @@ function ProfileTab({ initialData, onUpdate }) {
   };
 
   const handleSavePersonal = async () => {
-    const fields = [
+    const isValid = await trigger([
       "firstName",
       "lastName",
       "nationalCode",
       "birthDate",
       "gender",
-    ];
-    const isValid = await trigger(fields);
+    ]);
     if (isValid) {
-      onSubmit(getValues(fields));
+      const data = getValues();
+      onSubmit(data);
     }
   };
 
   const handleSaveBank = async () => {
-    const fields = ["shaba", "accountNumber", "cardNumber"];
-    const isValid = await trigger(fields);
+    const isValid = await trigger(["shaba", "accountNumber", "cardNumber"]);
     if (isValid) {
-      onSubmit(getValues(fields));
+      const data = getValues();
+      onSubmit(data);
     }
   };
 
@@ -95,11 +100,18 @@ function ProfileTab({ initialData, onUpdate }) {
                 >
                   تایید
                 </button>
-                <input
-                  {...register("email")}
-                  placeholder="آدرس ایمیل"
-                  className={styles.inlineInput}
-                />
+                <div className={styles.inputWithError}>
+                  <input
+                    {...register("email")}
+                    placeholder="آدرس ایمیل"
+                    className={styles.inlineInput}
+                  />
+                  <div className={styles.parentError}>
+                    {errors.email && (
+                      <p className={styles.error}>{errors.email.message}</p>
+                    )}
+                  </div>
+                </div>
               </div>
             ) : (
               <div className={styles.displayView}>
@@ -148,10 +160,25 @@ function ProfileTab({ initialData, onUpdate }) {
           {isPersonalEditing ? (
             <div>
               <div className={styles.editingGrid}>
-                <input {...register("firstName")} placeholder="نام" />
-                <input {...register("lastName")} placeholder="نام خانوادگی" />
-                <input {...register("nationalCode")} placeholder="کد ملی" />
-                <div>
+                <div className={styles.inputWithError}>
+                  <input {...register("name")} placeholder="نام" />
+                  <div className={styles.parentError}>
+                    {errors.name && (
+                      <p className={styles.error}>{errors.name.message}</p>
+                    )}
+                  </div>
+                </div>
+                <div className={styles.inputWithError}>
+                  <input {...register("nationalCode")} placeholder="کد ملی" />
+                  <div className={styles.parentError}>
+                    {errors.nationalCode && (
+                      <p className={styles.error}>
+                        {errors.nationalCode.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className={styles.inputWithError}>
                   <Controller
                     control={control}
                     name="birthDate"
@@ -171,15 +198,27 @@ function ProfileTab({ initialData, onUpdate }) {
                       />
                     )}
                   />
-                  {errors.birthDate && (
-                    <p className={styles.error}>{errors.birthDate.message}</p>
-                  )}
+                  <div className={styles.parentError}>
+                    {errors.birthDate && (
+                      <p className={styles.error}>{errors.birthDate.message}</p>
+                    )}
+                  </div>
                 </div>
-                <select {...register("gender")} className={styles.customGender}>
-                  <option value="">جنسیت</option>
-                  <option value="male">مرد</option>
-                  <option value="female">زن</option>
-                </select>
+                <div className={styles.inputWithError}>
+                  <select
+                    {...register("gender")}
+                    className={styles.customGender}
+                  >
+                    <option value="">جنسیت</option>
+                    <option value="male">مرد</option>
+                    <option value="female">زن</option>
+                  </select>
+                  <div className={styles.parentError}>
+                    {errors.gender && (
+                      <p className={styles.error}>{errors.gender.message}</p>
+                    )}
+                  </div>
+                </div>
               </div>
               <hr className={styles.lineHr} />
               <div className={styles.buttons}>
@@ -277,15 +316,40 @@ function ProfileTab({ initialData, onUpdate }) {
           {isBankEditing ? (
             <div>
               <div className={styles.editingGrid}>
-                <input
-                  {...register("shaba")}
-                  placeholder="شماره شبا (بدون IR)"
-                />
-                <input
-                  {...register("accountNumber")}
-                  placeholder="شماره حساب"
-                />
-                <input {...register("cardNumber")} placeholder="شماره کارت" />
+                <div className={styles.inputWithError}>
+                  <input
+                    {...register("shaba")}
+                    placeholder="شماره شبا (بدون IR)"
+                  />
+                  <div className={styles.parentError}>
+                    {errors.shaba && (
+                      <p className={styles.error}>{errors.shaba.message}</p>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <input
+                    {...register("accountNumber")}
+                    placeholder="شماره حساب"
+                  />
+                  <div className={styles.parentError}>
+                    {errors.accountNumber && (
+                      <p className={styles.error}>
+                        {errors.accountNumber.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <input {...register("cardNumber")} placeholder="شماره کارت" />
+                  <div className={styles.parentError}>
+                    {errors.cardNumber && (
+                      <p className={styles.error}>
+                        {errors.cardNumber.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
               <hr className={styles.lineHr} />
               <div className={styles.buttonsBank}>

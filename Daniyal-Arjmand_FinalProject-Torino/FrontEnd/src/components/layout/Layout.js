@@ -4,10 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useModal } from "@/context/ModalContext";
+import { usePathname } from "next/navigation";
 
 import styles from "@/components/layout/Layout.module.css";
 
 function Layout({ children }) {
+  const pathname = usePathname();
   const { user, logout, loading } = useAuth();
   const { openModal } = useModal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,7 +104,12 @@ function Layout({ children }) {
           <a>تماس با ما</a>
           <a>درباره ما</a>
           <a>خدمات گردشگری</a>
-          <Link href={"/"}>صفحه اصلی </Link>
+          <Link
+            href={"/"}
+            className={pathname === "/" ? styles.activeLink : ""}
+          >
+            صفحه اصلی{" "}
+          </Link>
           <img src="/images/Torino1.svg" alt="Torino Logo" />
         </div>
       </header>

@@ -64,7 +64,9 @@ function TourCard({ tour, index }) {
           <span>{persianPrice}</span> تومان
         </p>
         <div className={styles.buttonGroup}>
-          <button onClick={handleReserveClick}>رزرو</button>
+          <Link href={`/booking/${tour.id}`}>
+            <button onClick={handleReserveClick}>رزرو</button>
+          </Link>
         </div>
       </div>
     </div>
