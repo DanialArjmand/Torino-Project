@@ -1,11 +1,17 @@
 export function formatToJalali(dateString) {
   if (!dateString) return "";
   const date = new Date(dateString);
-  
-  const weekday = new Intl.DateTimeFormat('fa-IR', { weekday: 'long' }).format(date);
-  const day = new Intl.DateTimeFormat('fa-IR', { day: 'numeric' }).format(date);
-  const month = new Intl.DateTimeFormat('fa-IR', { month: 'long' }).format(date);
-  const year = new Intl.DateTimeFormat('fa-IR', { year: 'numeric' }).format(date);
+
+  const weekday = new Intl.DateTimeFormat("fa-IR", { weekday: "long" }).format(
+    date
+  );
+  const day = new Intl.DateTimeFormat("fa-IR", { day: "numeric" }).format(date);
+  const month = new Intl.DateTimeFormat("fa-IR", { month: "long" }).format(
+    date
+  );
+  const year = new Intl.DateTimeFormat("fa-IR", { year: "numeric" }).format(
+    date
+  );
 
   return `${weekday}، ${day} ${month} ${year}`;
 }
@@ -61,4 +67,39 @@ export function calculateTourDuration(startDate, endDate) {
 export function formatToPersianNumber(number) {
   if (number === undefined || number === null) return "";
   return new Intl.NumberFormat("fa-IR").format(number);
+}
+
+export function formatToJalaliDateTime(dateString) {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
+  return new Intl.DateTimeFormat("fa-IR", options).format(date);
+}
+
+export function formatToShortJalaliDateTime(dateString) {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  };
+
+  const formatted = new Intl.DateTimeFormat("fa-IR-u-nu-latn", options).format(
+    date
+  );
+
+  return formatted.replace(",", " -");
 }

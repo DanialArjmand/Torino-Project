@@ -56,8 +56,7 @@ function ProfileTab({ initialData, onUpdate }) {
 
   const handleSavePersonal = async () => {
     const isValid = await trigger([
-      "firstName",
-      "lastName",
+      "fullName",
       "nationalCode",
       "birthDate",
       "gender",
@@ -161,10 +160,13 @@ function ProfileTab({ initialData, onUpdate }) {
             <div>
               <div className={styles.editingGrid}>
                 <div className={styles.inputWithError}>
-                  <input {...register("name")} placeholder="نام" />
+                  <input
+                    {...register("fullName")}
+                    placeholder="نام و نام خانوادگی"
+                  />
                   <div className={styles.parentError}>
-                    {errors.name && (
-                      <p className={styles.error}>{errors.name.message}</p>
+                    {errors.fullName && (
+                      <p className={styles.error}>{errors.fullName.message}</p>
                     )}
                   </div>
                 </div>
@@ -252,9 +254,11 @@ function ProfileTab({ initialData, onUpdate }) {
                 </div>
                 <div>
                   <span>
-                    {`${initialData.firstName || ""} ${
-                      initialData.lastName || ""
-                    }`.trim() || <hr className={styles.empty} />}
+                    {initialData.fullName ||
+                      `${initialData.firstName || ""} ${
+                        initialData.lastName || ""
+                      }`.trim() ||
+                      "-"}
                   </span>
                   <span>
                     {initialData.gender === "male" ? (

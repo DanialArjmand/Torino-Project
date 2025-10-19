@@ -36,7 +36,7 @@ export const bookingSchema = yup.object().shape({
 
 export const profileSchema = yup.object().shape({
   email: yup.string().email("ایمیل معتبر نیست"),
-  name: yup
+  fullName: yup
     .string()
     .max(40, "نام نمی‌تواند بیشتر از ۴۰ کاراکتر باشد")
     .matches(/^[\u0600-\u06FFa-zA-Z\s]+$/, "نام فقط می‌تواند شامل حروف باشد"),

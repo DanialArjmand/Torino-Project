@@ -15,6 +15,10 @@ const getVehicleInfo = (vehicle) => {
       return { text: "سفر با کشتی", icon: "/images/ship.svg" };
     case "bus":
       return { text: "سفر با اتوبوس", icon: "/images/bus-empty.svg" };
+    case "train":
+      return { text: "سفر با قطار", icon: "/images/bus-empty.svg" };
+    case "suv":
+      return { text: "سفر با شاسی بلند", icon: "/images/bus-empty.svg" };
     default:
       return { text: "سفر", icon: "/images/bus-empty.svg" };
   }

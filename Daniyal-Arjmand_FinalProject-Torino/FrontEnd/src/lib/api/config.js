@@ -36,6 +36,10 @@ export const getPurchasedTours = () => {
   return api.get("/user/tours");
 };
 
+export const getTransactions = () => {
+  return api.get("/user/transactions");
+};
+
 export const getBasket = () => {
   return api.get("/basket");
 };
