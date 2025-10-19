@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import styles from "./TourCard.module.css";
 import {
   formatToJalali,
@@ -10,9 +10,17 @@ import {
   translateVehicle,
   calculateTourDuration,
 } from "@/lib/formatters";
+import { useAuth } from "@/context/AuthContext";
+import { useModal } from "@/context/ModalContext";
+import { useState } from "react";
+import { addToBasket } from "@/lib/api/config";
 
 function TourCard({ tour, index }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const { user } = useAuth();
+  const { openModal } = useModal();
+  const [isBooking, setIsBooking] = useState(false);
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -32,9 +40,25 @@ function TourCard({ tour, index }) {
   const translatedVehicle = translateVehicle(tour.fleetVehicle);
   const persianPrice = formatToPersianNumber(tour.price);
 
-  const handleReserveClick = (e) => {
+  const handleReserveClick = async (e) => {
     e.stopPropagation();
-    router.push(`/booking/${tour.id}`);
+    if (isBooking) return;
+
+    if (!user) {
+      openModal(pathname);
+      return;
+    }
+
+    setIsBooking(true);
+    try {
+      await addToBasket(tour.id);
+      router.push(`/booking/${tour.id}`);
+    } catch (error) {
+      console.error("خطا:", error);
+      alert("خطا در شروع فرآیند رزرو.");
+    } finally {
+      setIsBooking(false);
+    }
   };
 
   return (
@@ -64,9 +88,7 @@ function TourCard({ tour, index }) {
           <span>{persianPrice}</span> تومان
         </p>
         <div className={styles.buttonGroup}>
-          <Link href={`/booking/${tour.id}`}>
-            <button onClick={handleReserveClick}>رزرو</button>
-          </Link>
+          <button onClick={handleReserveClick}>رزرو</button>
         </div>
       </div>
     </div>

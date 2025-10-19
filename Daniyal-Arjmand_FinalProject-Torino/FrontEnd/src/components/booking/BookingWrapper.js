@@ -1,10 +1,11 @@
 "use client";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bookingSchema } from "@/lib/schema/validationSchemas";
 import { useRouter } from "next/navigation";
 import { createOrder } from "@/lib/api/config";
+import { toast } from 'react-hot-toast';
 import BookingInformation from "./BookingInformation";
 import BookingForm from "./BookingForm";
 import styles from "./BookingWrapper.module.css";
@@ -23,22 +24,22 @@ function BookingWrapper({ tour }) {
   const onSubmit = async (data) => {
     try {
       await createOrder({ ...data, tourId: tour.id });
-      alert("تور شما با موفقیت رزرو شد!");
+      toast.success("تور شما با موفقیت رزرو شد!");
       router.push("/user/profile");
     } catch (error) {
-      alert("خطا در ثبت رزرو. لطفاً دوباره تلاش کنید.");
+      toast.error("خطا در ثبت رزرو. لطفاً دوباره تلاش کنید.");
       console.error(error);
     }
   };
 
   return (
-    <form id="booking-form" onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
+    <form
+      id="booking-form"
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.formContainer}
+    >
       <BookingInformation tour={tour} />
-      <BookingForm 
-        register={register} 
-        control={control} 
-        errors={errors} 
-      />
+      <BookingForm register={register} control={control} errors={errors} />
     </form>
   );
 }

@@ -3,12 +3,15 @@ import EnterMobileForm from "@/components/auth/EnterMobileForm";
 import EnterOtpForm from "@/components/auth/EnterOtpForm";
 import { sendOtp, checkOtp } from "@/lib/api/config";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useAuth } from "@/context/AuthContext";
+import { useModal } from "@/context/ModalContext";
 
 function LoginPage({ onClose }) {
   const router = useRouter();
   const { login } = useAuth();
+  const { redirectPath } = useModal();
   const [step, setStep] = useState(1);
   const [mobile, setMobile] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -54,16 +57,15 @@ function LoginPage({ onClose }) {
       Cookies.set("refreshToken", refreshToken, { expires: 7, secure: true });
 
       login(user);
-
-      alert("شما با موفقیت وارد شدید!");
+      toast.success("شما با موفقیت وارد شدید!");
       onClose();
-      router.push("/");
+      router.push(redirectPath);
       router.refresh();
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || "کد وارد شده صحیح نیست.";
       setFeedback({ type: "error", message: errorMessage });
-      console.error("خطا در بررسی کد OTP:", err);
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }

@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
+import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@/context/AuthContext";
 import { ModalProvider } from "@/context/ModalContext";
 
@@ -25,6 +26,16 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AuthProvider>
           <ModalProvider>
+            <Toaster
+              toastOptions={{
+                style: {
+                  fontFamily: "var(--font-iransans)",
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                },
+              }}
+            />
             <Layout>{children}</Layout>
           </ModalProvider>
         </AuthProvider>

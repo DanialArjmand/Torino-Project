@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@/lib/schema/validationSchemas";
 import { updateUserProfile } from "@/lib/api/config";
+import { toast } from "react-hot-toast";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -33,17 +34,15 @@ function ProfileTab({ initialData, onUpdate }) {
   }, [initialData, reset]);
 
   const onSubmit = async (data) => {
-    console.log("📤 داده‌ای که برای آپدیت می‌فرستم:", data);
     try {
       const response = await updateUserProfile(data);
-      alert("اطلاعات با موفقیت ذخیره شد.");
+      toast.success("اطلاعات با موفقیت ذخیره شد.");
       onUpdate(response.data);
       setIsPersonalEditing(false);
       setIsBankEditing(false);
       setIsContactEditing(false);
     } catch (error) {
-      alert("خطا در ذخیره اطلاعات.");
-      console.error(error);
+      toast.error("خطا در ذخیره اطلاعات.");
     }
   };
 

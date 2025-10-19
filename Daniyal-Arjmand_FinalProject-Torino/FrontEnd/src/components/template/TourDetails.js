@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import styles from "./TourDetails.module.css";
-
 import {
   formatToJalali,
   formatToPersianNumber,
@@ -12,15 +9,19 @@ import {
 import { translateCityById } from "@/lib/translators";
 import { addToBasket } from "@/lib/api/config";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useModal } from "@/context/ModalContext";
+import { toast } from "react-hot-toast";
+
+import styles from "./TourDetails.module.css";
 
 function TourDetails({ tour }) {
   const router = useRouter();
   const { user } = useAuth();
   const { openModal } = useModal();
   const [isBooking, setIsBooking] = useState(false);
+  const pathname = usePathname();
 
   const persianPrice = formatToPersianNumber(tour.price);
   const formattedStartDate = formatToJalali(tour.startDate);
@@ -41,7 +42,7 @@ function TourDetails({ tour }) {
     if (isBooking) return;
 
     if (!user) {
-      openModal();
+      openModal(pathname);
       return;
     }
 
@@ -50,8 +51,7 @@ function TourDetails({ tour }) {
       await addToBasket(tour.id);
       router.push(`/booking/${tour.id}`);
     } catch (error) {
-      console.error("خطا در افزودن به سبد خرید:", error);
-      alert("خطایی رخ داد. لطفاً دوباره تلاش کنید.");
+      toast.error("خطایی رخ داد. لطفاً دوباره تلاش کنید.");
     } finally {
       setIsBooking(false);
     }
@@ -81,19 +81,13 @@ function TourDetails({ tour }) {
             </div>
 
             <div className={styles.reservation}>
-              <Link
-                href={`/booking/${tour.id}`}
-                className={styles.reserveButton}
+              <button
+                className={styles.button}
+                onClick={handleReserveClick}
+                disabled={isBooking}
               >
-                <button
-                  className={styles.button}
-                  onClick={handleReserveClick}
-                  disabled={isBooking}
-                >
-                  رزرو و خرید
-                </button>
-              </Link>
-
+                رزرو و خرید
+              </button>
               <div className={styles.price}>
                 <p dir="rtl">
                   <span>{persianPrice}</span> تومان

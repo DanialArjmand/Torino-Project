@@ -8,10 +8,16 @@ const ModalContext = createContext(null);
 export function ModalProvider({ children }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
+  const [redirectPath, setRedirectPath] = useState("/");
+
+  const openModal = (path = "/") => {
+    setRedirectPath(path);
+    setIsModalOpen(true);
+  };
+
   const closeModal = () => setIsModalOpen(false);
 
-  const value = { isModalOpen, openModal, closeModal };
+  const value = { isModalOpen, openModal, closeModal, redirectPath };
 
   return (
     <ModalContext.Provider value={value}>
