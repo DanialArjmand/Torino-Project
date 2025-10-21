@@ -12,9 +12,14 @@ function Layout({ children }) {
   const pathname = usePathname();
   const { user, logout, loading } = useAuth();
   const { openModal } = useModal();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const menuRef = useRef(null);
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuClosing, setIsMobileMenuClosing] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   const closeMenu = () => {
     if (isMenuOpen) {
@@ -22,6 +27,16 @@ function Layout({ children }) {
       setTimeout(() => {
         setIsMenuOpen(false);
         setIsClosing(false);
+      }, 300);
+    }
+  };
+
+  const closeMobileMenu = () => {
+    if (isMobileMenuOpen) {
+      setIsMobileMenuClosing(true);
+      setTimeout(() => {
+        setIsMobileMenuOpen(false);
+        setIsMobileMenuClosing(false);
       }, 300);
     }
   };
@@ -40,11 +55,36 @@ function Layout({ children }) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        !event.target.closest(`.${styles.hamburger}`)
+      ) {
+        closeMobileMenu();
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
   const toggleMenu = () => {
     if (isMenuOpen) {
       closeMenu();
     } else {
       setIsMenuOpen(true);
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    if (isMobileMenuOpen) {
+      closeMobileMenu();
+    } else {
+      setIsMobileMenuOpen(true);
     }
   };
 
@@ -93,12 +133,22 @@ function Layout({ children }) {
               )}
             </div>
           ) : (
-            <button onClick={openModal}>
-              ثبت نام <span>|</span> ورود
-              <img src="/images/frame.svg" alt="user Icon" />
+            <button onClick={openModal} className={styles.loginButton}>
+              <span className={styles.loginButtonText}>
+                ورود <span>|</span> ثبت نام
+              </span>
+              <img
+                src="/images/frame.svg"
+                alt="user Icon"
+                className={styles.loginIcon}
+              />
             </button>
           )}
         </div>
+
+        <button className={styles.hamburger} onClick={toggleMobileMenu}>
+          <img src="/images/burger-menu.svg" alt="Menu" />
+        </button>
 
         <div className={styles.link}>
           <a>تماس با ما</a>
@@ -108,10 +158,36 @@ function Layout({ children }) {
             href={"/"}
             className={pathname === "/" ? styles.activeLink : ""}
           >
-            صفحه اصلی{" "}
+            صفحه اصلی
           </Link>
           <img src="/images/Torino1.svg" alt="Torino Logo" />
         </div>
+
+        {isMobileMenuOpen && (
+          <div
+            className={`${styles.mobileMenuBackdrop} ${
+              isMobileMenuClosing ? styles.mobileMenuBackdropClosing : ""
+            }`}
+          >
+            <nav
+              ref={mobileMenuRef}
+              className={`${styles.mobileMenu} ${
+                isMobileMenuClosing ? styles.mobileMenuClosing : ""
+              }`}
+            >
+              <Link
+                href={"/"}
+                className={pathname === "/" ? styles.activeLink : ""}
+                onClick={closeMobileMenu}
+              >
+                صفحه اصلی
+              </Link>
+              <a onClick={closeMobileMenu}>خدمات گردشگری</a>
+              <a onClick={closeMobileMenu}>درباره ما</a>
+              <a onClick={closeMobileMenu}>تماس با ما</a>
+            </nav>
+          </div>
+        )}
       </header>
       <main className={styles.container}>{children}</main>
 
@@ -119,15 +195,18 @@ function Layout({ children }) {
 
       <footer className={styles.footer}>
         <div className={styles.license}>
-          <div className={styles.supports}>
-            <img
-              className={styles.torinoLogo}
-              src="/images/Torino1.svg"
-              alt="Torino Logo"
-            />
-            <p>
-              <span>۰۲۱-۸۵۸۴ </span>:تلفن پشتیبانی
-            </p>
+          <div className={styles.supportWrapper}>
+            <div className={styles.supportInfo}>
+              <img
+                className={styles.torinoLogo}
+                src="/images/Torino1.svg"
+                alt="Torino Logo"
+              />
+              <p>
+                <span>۰۲۱-۸۵۸۴ </span>:تلفن پشتیبانی
+              </p>
+            </div>
+
             <div className={styles.logosLicense}>
               <img src="/images/aira-682b7c43.svg" alt="Logo" />
               <img src="/images/samandehi-6e2b448a.svg" alt="Logo" />

@@ -74,8 +74,6 @@ function ProfileTab({ initialData, onUpdate }) {
     }
   };
 
-  console.log("خطاهای فرم:", errors);
-
   return (
     <>
       <div className={styles.mainItem}>

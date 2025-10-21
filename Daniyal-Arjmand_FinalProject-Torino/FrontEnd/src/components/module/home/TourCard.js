@@ -14,6 +14,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useModal } from "@/context/ModalContext";
 import { useState } from "react";
 import { addToBasket } from "@/lib/api/config";
+import { toast } from "react-hot-toast";
 
 function TourCard({ tour, index }) {
   const router = useRouter();
@@ -54,8 +55,7 @@ function TourCard({ tour, index }) {
       await addToBasket(tour.id);
       router.push(`/booking/${tour.id}`);
     } catch (error) {
-      console.error("خطا:", error);
-      alert("خطا در شروع فرآیند رزرو.");
+      toast.error("خطا در شروع فرآیند رزرو.");
     } finally {
       setIsBooking(false);
     }

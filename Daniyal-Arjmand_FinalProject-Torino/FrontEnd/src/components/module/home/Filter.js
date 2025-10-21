@@ -31,7 +31,6 @@ function Filter({ tours, onSearch }) {
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
 
   const handleSearchClick = () => {
-    console.log("search clicked ✅", { origin, destination, date });
     onSearch({
       date,
       origin,

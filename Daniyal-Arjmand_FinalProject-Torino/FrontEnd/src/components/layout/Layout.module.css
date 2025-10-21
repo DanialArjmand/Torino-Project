@@ -11,6 +11,7 @@
   width: 100%;
   z-index: 1000;
   background-color: #fff;
+  padding: 0 40px;
 }
 
 .header a {
@@ -56,7 +57,7 @@
   border-radius: 8px;
 }
 
-.buttons button {
+.loginButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,9 +71,10 @@
   color: #28a745;
   cursor: pointer;
   border-radius: 8px;
+  transition: width 0.3s ease;
 }
 
-.buttons span {
+.loginButtonText span {
   padding: 0 8px;
 }
 
@@ -93,8 +95,8 @@
 
 .footer {
   width: 100%;
-  height: 270px;
-  padding-top: 20px;
+  height: auto;
+  padding: 20px 0;
 }
 
 .license {
@@ -102,32 +104,51 @@
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid #00000033;
+  flex-wrap: wrap;
   padding-bottom: 25px;
 }
 
-.supports .torinoLogo {
-  margin: 0 0 17px 18px;
+.supportWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-.supports p {
-  font-size: 17px;
+.supportInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.supportInfo .torinoLogo {
+  margin: 0;
+}
+
+.supportInfo p {
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-size: 15px;
   font-weight: 400;
-  padding-left: 20px;
+  padding: 10px 0;
 }
 
-.supports span {
-  font-size: 15px;
+.supportInfo span {
   font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 15px;
   font-weight: 400;
 }
 
 .logosLicense {
-  padding: 30px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 20px;
+  justify-content: flex-start;
 }
 
 .logosLicense img {
-  margin-right: 30px;
+  margin-right: 0;
 }
 
 .description {
@@ -322,5 +343,201 @@
   to {
     opacity: 0;
     transform: translateY(-10px);
+  }
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1061;
+}
+
+.hamburger img {
+  width: 30px;
+  height: 30px;
+}
+
+.mobileMenuBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  animation: fadeIn 0.3s ease-out;
+}
+.mobileMenuBackdropClosing {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1060;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 80px 20px 20px;
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.mobileMenuClosing {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+.mobileMenu a {
+  font-family: "YekanBakh", sans-serif;
+  font-size: 18px;
+  color: #282828;
+  text-decoration: none;
+  padding: 15px 10px;
+  text-align: right;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobileMenu a:hover {
+  background-color: #f9f9f9;
+}
+
+.mobileMenu .activeLink {
+  color: #28a745;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 40px;
+    justify-content: space-between;
+  }
+  .link {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  .loginButton {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+  .loginButton .loginButtonText {
+    display: none;
+  }
+  .buttons img {
+    margin: 0;
+  }
+  .loginButton .loginIcon {
+    content: url("/images/login.svg");
+    width: 24px;
+    height: 24px;
+  }
+
+  .lineHr {
+    margin: 0 20px;
+  }
+
+  .license {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 20px;
+    gap: 40px;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 450px;
+    justify-content: space-around;
+  }
+
+  .description div {
+    text-align: center;
+  }
+
+  .supportWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .supportInfo {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .logosLicense {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 280px;
+  }
+  .logosLicense img {
+    max-width: 60px;
+    height: auto;
+  }
+
+  .websiteRights {
+    padding-top: 15px;
+    border-top: 1px solid #00000033;
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .license {
+    gap: 30px;
   }
 }
