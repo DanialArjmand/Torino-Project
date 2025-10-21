@@ -18,6 +18,7 @@
   font-weight: 600;
   color: #595959;
   padding: 5px 0 18px;
+  text-align: center;
 }
 
 .title span {
@@ -40,12 +41,18 @@
   display: flex;
   align-items: center;
   border-right: 1px solid #00000026;
+  padding: 0 15px;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .lastDiv {
   display: flex;
   align-items: center;
   border: none;
+  padding: 0 15px;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .filterContainer img {
@@ -62,6 +69,9 @@
   font-size: 22px;
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   outline: none;
+  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
 }
 
 .button {
@@ -79,8 +89,14 @@
 
 .customDate {
   font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
-  font-size: 11px;
+  font-size: 20px;
   font-weight: 400;
+  height: 51px;
+  border: none;
+  flex-grow: 1;
+  min-width: 0;
+  width: 100%;
+  outline: none;
 }
 
 .positionRelative {
@@ -147,7 +163,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
     gap: 15px;
-    width: 90%;
+    width: 100%;
     max-width: 500px;
     height: auto;
     padding: 20px;
@@ -195,5 +211,25 @@
   .customDate {
     font-size: 18px;
     text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .filterContainer {
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 22px;
+  }
+
+  .button {
+    font-size: 18px;
+  }
+
+  .filterContainer input,
+  .customDate {
+    font-size: 16px;
   }
 }
