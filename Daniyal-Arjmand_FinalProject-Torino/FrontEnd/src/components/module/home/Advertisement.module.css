@@ -9,9 +9,10 @@
 .container {
   width: 1188px;
   display: flex;
+  overflow: hidden;
   border: 1px solid #00000040;
   border-radius: 10px;
-  margin: 70px 0 70px;
+  margin: 70px 0;
 }
 
 .information {
@@ -20,6 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
 }
 
 .number {
@@ -55,7 +57,6 @@
   justify-content: space-around;
   align-items: center;
   background-color: #28a745;
-  border-radius: 10px;
 }
 
 .text {
@@ -78,4 +79,75 @@
   font-weight: 400;
   color: #fff;
   word-spacing: 4px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column-reverse;
+    width: 90%;
+    max-width: 600px;
+  }
+
+  .textContainer {
+    padding: 0 15px;
+  }
+
+  .information,
+  .textContainer {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .information {
+    flex-direction: row-reverse;
+    padding: 15px 0;
+  }
+
+  .information button {
+    margin: 0 10px;
+  }
+
+  .textContainer {
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+  }
+
+  .textContainer img {
+    max-width: 45%;
+  }
+  .text {
+    width: 50%;
+  }
+  .text h2 {
+    font-size: 36px;
+  }
+  .text p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .textContainer {
+    flex-direction: row;
+  }
+
+  .textContainer img {
+    max-width: 40%;
+  }
+
+  .text {
+    width: 55%;
+  }
+
+  .text h2 {
+    font-size: 24px;
+  }
+
+  .text p {
+    font-size: 18px;
+  }
+
+  .number p {
+    font-size: 22px;
+  }
 }

@@ -6,22 +6,35 @@
   align-items: center;
   margin: auto;
   margin-bottom: 50px;
+  width: 100%;
 }
 
 .title {
-  width: 1180px;
+  width: 95%;
+  max-width: 1180px;
   text-align: right;
   word-spacing: 4px;
   font-size: 32px;
   font-weight: 400;
   padding: 0 0 10px;
+  box-sizing: border-box;
 }
 
 .parentContainer {
-  width: 100%;
+  width: 95%;
+  max-width: 1180px;
+  margin: auto;
   display: grid;
-  grid-template-columns: repeat(4, 278px);
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   justify-content: center;
-  align-items: center;
   gap: 23px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 24px;
+  }
+  .parentContainer {
+    gap: 15px;
+  }
 }

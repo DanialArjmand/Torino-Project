@@ -156,7 +156,6 @@
     margin-bottom: 60px;
   }
 
-  /* Reset flex properties and add individual borders */
   .childDiv,
   .lastDiv,
   .button {
@@ -167,24 +166,17 @@
     justify-content: flex-end;
   }
 
-  /* Place items in the grid */
-  /* Row 1: Destination (left), Origin (right) */
   .filterContainer > .childDiv:nth-of-type(2) {
-    /* Destination Selector */
     grid-area: 1 / 1 / 2 / 2;
   }
   .filterContainer > .lastDiv {
-    /* Origin Selector */
     grid-area: 1 / 2 / 2 / 3;
   }
 
-  /* Row 2: Date (full width) */
   .filterContainer > .childDiv:nth-of-type(1) {
-    /* Date Selector */
     grid-area: 2 / 1 / 3 / 3;
   }
 
-  /* Row 3: Button (full width) */
   .filterContainer > .button {
     grid-area: 3 / 1 / 4 / 4;
     margin: 0;
@@ -199,7 +191,6 @@
     width: 100%;
   }
 
-  /* Adjust input font sizes for responsive */
   .filterContainer input,
   .customDate {
     font-size: 18px;
