@@ -61,8 +61,10 @@ function TourDetails({ tour }) {
       <div className={styles.container}>
         <div className={styles.optionTour}>
           <div className={styles.destination}>
-            <h1>{tour.title}</h1>
-            <p dir="rtl">{durationText}</p>
+            <div className={styles.titleTour}>
+              <h1>{tour.title}</h1>
+              <p dir="rtl">{durationText}</p>
+            </div>
             <div className={styles.tourLeader}>
               <div>
                 <p>تضمین کیفیت</p>
