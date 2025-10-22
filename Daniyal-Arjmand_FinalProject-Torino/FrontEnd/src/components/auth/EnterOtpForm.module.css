@@ -28,8 +28,8 @@
 .header {
   width: 100%;
   position: absolute;
-  top: 17;
-  left: 15;
+  top: 17px;
+  left: 15px;
 }
 
 .backButton {
@@ -44,12 +44,12 @@
   color: #282828;
 }
 
-.title p {
+.container p {
   font-size: 16px;
   font-weight: 400;
 }
 
-.title span {
+.container p span {
   font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
 }
 
@@ -74,6 +74,8 @@
   height: 53px;
   border-radius: 6px;
   border: 1px solid #00000040;
+  text-align: center;
+  font-size: 20px;
 }
 
 .containerError {
@@ -134,4 +136,53 @@
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    padding: 30px 20px;
+  }
+
+  .container p {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .otpContainer {
+    width: 90%;
+  }
+
+  .submitButton {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .container p {
+    font-size: 14px;
+  }
+
+  .otpInput {
+    width: 45px !important;
+    height: 48px;
+  }
+
+  .resendContainer p {
+    font-size: 12px;
+  }
+
+  .submitButton {
+    height: 50px;
+    font-size: 16px;
+  }
 }

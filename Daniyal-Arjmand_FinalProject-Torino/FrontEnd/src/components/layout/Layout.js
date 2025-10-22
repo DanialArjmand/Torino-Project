@@ -146,7 +146,12 @@ function Layout({ children }) {
           )}
         </div>
 
-        <button className={styles.hamburger} onClick={toggleMobileMenu}>
+        <button
+          className={`${styles.hamburger} ${
+            isMobileMenuOpen ? styles.hamburgerHidden : ""
+          }`}
+          onClick={toggleMobileMenu}
+        >
           <img src="/images/burger-menu.svg" alt="Menu" />
         </button>
 
@@ -177,14 +182,42 @@ function Layout({ children }) {
             >
               <Link
                 href={"/"}
-                className={pathname === "/" ? styles.activeLink : ""}
+                className={pathname === "/" ? styles.activeMobileLink : ""}
                 onClick={closeMobileMenu}
               >
-                صفحه اصلی
+                <span>صفحه اصلی</span>
+                <img src="/images/home-2.svg" alt="صفحه اصلی" />
               </Link>
-              <a onClick={closeMobileMenu}>خدمات گردشگری</a>
-              <a onClick={closeMobileMenu}>درباره ما</a>
-              <a onClick={closeMobileMenu}>تماس با ما</a>
+              <Link
+                href={"/services"}
+                className={
+                  pathname === "/services" ? styles.activeMobileLink : ""
+                }
+                onClick={closeMobileMenu}
+              >
+                <span>خدمات گردشگری</span>
+                <img src="/images/airplane-square.svg" alt="خدمات گردشگری" />
+              </Link>
+              <Link
+                href={"/about-us"}
+                className={
+                  pathname === "/about-us" ? styles.activeMobileLink : ""
+                }
+                onClick={closeMobileMenu}
+              >
+                <span>درباره ما</span>
+                <img src="/images/volume-low.svg" alt="درباره ما" />
+              </Link>
+              <Link
+                href={"/contact-us"}
+                className={
+                  pathname === "/contact-us" ? styles.activeMobileLink : ""
+                }
+                onClick={closeMobileMenu}
+              >
+                <span>تماس با ما</span>
+                <img src="/images/call-menu.svg" alt="تماس با ما" />
+              </Link>
             </nav>
           </div>
         )}
