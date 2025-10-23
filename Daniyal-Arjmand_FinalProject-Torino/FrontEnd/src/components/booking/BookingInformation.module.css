@@ -76,6 +76,11 @@
   outline: none;
 }
 
+.button:hover {
+  background-color: #1f8437;
+  transition: all 0.1s ease-in-out;
+}
+
 @media (max-width: 1024px) {
   .infoContainer {
     width: 100%;

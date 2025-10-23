@@ -1,4 +1,4 @@
-import styles from "./ProfileForm.module.css";
+import styles from "./ProfileHeader.module.css";
 
 function ProfileHeader({ activeTab, setActiveTab }) {
   return (

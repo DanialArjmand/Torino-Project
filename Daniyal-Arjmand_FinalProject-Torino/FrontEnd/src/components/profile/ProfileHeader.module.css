@@ -1,0 +1,73 @@
+.header {
+  width: 284px;
+  height: 170px;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  margin-left: 30px;
+  overflow: hidden;
+}
+
+.headerItem {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16.7px 10px;
+  cursor: pointer;
+}
+
+.headerItem:hover {
+  background-color: #f0f0f0;
+}
+
+.headerItem.active {
+  background-color: #28a74540;
+  color: #28a745;
+}
+
+.hrLine {
+  height: 0.5px;
+  background-color: #00000033;
+  border: none;
+  margin: 0 10px;
+}
+
+.headerItem img {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+
+.headerItem p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.headerItem.active .icon {
+  background-color: #28a745;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background-color: #282828;
+}
+
+.profileIcon {
+  -webkit-mask-image: url("/images/frame-black.svg");
+  mask-image: url("/images/frame-black.svg");
+}
+
+.toursIcon {
+  -webkit-mask-image: url("/images/sun-fog.svg");
+  mask-image: url("/images/sun-fog.svg");
+}
+
+.transactionsIcon {
+  -webkit-mask-image: url("/images/convert-card.svg");
+  mask-image: url("/images/convert-card.svg");
+}

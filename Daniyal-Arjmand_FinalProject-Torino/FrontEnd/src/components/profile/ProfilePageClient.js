@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { getUserProfile } from "@/lib/api/config";
 import ProfileForm from "./ProfileForm";
 
-import styles from "@/components/profile/ProfileForm.module.css";
+import styles from "./ProfilePageClient.module.css";
 
 const fetcher = async () => await getUserProfile();
 

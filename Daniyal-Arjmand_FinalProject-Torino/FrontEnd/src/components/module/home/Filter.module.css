@@ -19,6 +19,7 @@
   color: #595959;
   padding: 5px 0 18px;
   text-align: center;
+  word-spacing: 4px;
 }
 
 .title span {
@@ -76,6 +77,11 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   font-size: 24px;
   cursor: pointer;
+}
+
+.button:hover {
+  background-color: #1f8437;
+  transition: all 0.1s ease-in-out;
 }
 
 .customDate {

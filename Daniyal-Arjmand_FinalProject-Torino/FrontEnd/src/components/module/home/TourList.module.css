@@ -20,13 +20,19 @@
   box-sizing: border-box;
 }
 
+.text {
+  text-align: center;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-size: 22px;
+}
+
 .parentContainer {
   width: 95%;
   max-width: 1180px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  justify-content: center;
+  justify-items: center;
   gap: 23px;
 }
 

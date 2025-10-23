@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import styles from "./ProfileForm.module.css";
+import styles from "./ProfileTab.module.css";
 import "@/components/module/home/calender.css";
 
 function ProfileTab({ initialData, onUpdate }) {

@@ -8,6 +8,9 @@
   font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
 }
 
+.rmdp-range {
+  background-color: #28a745 !important;
+}
 .rmdp-week-day {
   color: #333 !important;
 }

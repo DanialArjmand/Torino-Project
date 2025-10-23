@@ -59,7 +59,11 @@ function LoginPage({ onClose }) {
       login(user);
       toast.success("شما با موفقیت وارد شدید!");
       onClose();
-      router.push(redirectPath);
+      const path =
+        typeof redirectPath === "string" && redirectPath.startsWith("/")
+          ? redirectPath
+          : "/";
+      router.push(path);
       router.refresh();
     } catch (err) {
       const errorMessage =

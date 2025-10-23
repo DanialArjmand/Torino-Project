@@ -6,8 +6,8 @@ import styles from "./TourList.module.css";
 function TourList({ tours }) {
   if (!tours || tours.length === 0) {
     return (
-      <div style={{ textAlign: "center", margin: "2rem" }}>
-        هیچ توری برای نمایش وجود ندارد.
+      <div className={styles.text}>
+        هیچ توری برای نمایش وجود ندارد
       </div>
     );
   }

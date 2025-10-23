@@ -2,11 +2,12 @@
 
 import useSWR from "swr";
 import { getTransactions } from "@/lib/api/config";
-import styles from "./ProfileForm.module.css";
 import {
   formatToShortJalaliDateTime,
   formatToPersianNumber,
 } from "@/lib/formatters";
+
+import styles from "./TransactionsTab.module.css";
 
 const fetcher = () => getTransactions().then((res) => res.data);
 

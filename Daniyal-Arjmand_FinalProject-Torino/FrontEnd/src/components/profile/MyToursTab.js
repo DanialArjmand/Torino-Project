@@ -3,8 +3,9 @@
 import useSWR from "swr";
 import { getPurchasedTours } from "@/lib/api/config";
 import { translateCityById } from "@/lib/translators";
-import styles from "./ProfileForm.module.css";
 import { formatToJalali, formatToPersianNumber } from "@/lib/formatters";
+
+import styles from "./MyToursTab.module.css";
 
 const getVehicleInfo = (vehicle) => {
   const lowerCaseVehicle = vehicle?.toLowerCase() || "";
