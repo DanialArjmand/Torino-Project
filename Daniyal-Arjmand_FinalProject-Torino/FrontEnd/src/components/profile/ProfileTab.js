@@ -156,7 +156,9 @@ function ProfileTab({ initialData, onUpdate }) {
           {isPersonalEditing ? (
             <div>
               <div className={styles.editingGrid}>
-                <div className={styles.inputWithError}>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldFullName}`}
+                >
                   <input
                     {...register("fullName")}
                     placeholder="نام و نام خانوادگی"
@@ -167,7 +169,9 @@ function ProfileTab({ initialData, onUpdate }) {
                     )}
                   </div>
                 </div>
-                <div className={styles.inputWithError}>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldNationalCode}`}
+                >
                   <input {...register("nationalCode")} placeholder="کد ملی" />
                   <div className={styles.parentError}>
                     {errors.nationalCode && (
@@ -177,7 +181,9 @@ function ProfileTab({ initialData, onUpdate }) {
                     )}
                   </div>
                 </div>
-                <div className={styles.inputWithError}>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldBirthDate}`}
+                >
                   <Controller
                     control={control}
                     name="birthDate"
@@ -203,7 +209,9 @@ function ProfileTab({ initialData, onUpdate }) {
                     )}
                   </div>
                 </div>
-                <div className={styles.inputWithError}>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldGender}`}
+                >
                   <select
                     {...register("gender")}
                     className={styles.customGender}
@@ -254,8 +262,7 @@ function ProfileTab({ initialData, onUpdate }) {
                     {initialData.fullName ||
                       `${initialData.firstName || ""} ${
                         initialData.lastName || ""
-                      }`.trim() ||
-                      "-"}
+                      }`.trim() || <hr className={styles.empty} />}
                   </span>
                   <span>
                     {initialData.gender === "male" ? (
@@ -317,7 +324,9 @@ function ProfileTab({ initialData, onUpdate }) {
           {isBankEditing ? (
             <div>
               <div className={styles.editingGrid}>
-                <div className={styles.inputWithError}>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldShaba}`}
+                >
                   <input
                     {...register("shaba")}
                     placeholder="شماره شبا (بدون IR)"
@@ -328,7 +337,9 @@ function ProfileTab({ initialData, onUpdate }) {
                     )}
                   </div>
                 </div>
-                <div>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldAccountNumber}`}
+                >
                   <input
                     {...register("accountNumber")}
                     placeholder="شماره حساب"
@@ -341,7 +352,9 @@ function ProfileTab({ initialData, onUpdate }) {
                     )}
                   </div>
                 </div>
-                <div>
+                <div
+                  className={`${styles.inputWithError} ${styles.fieldCardNumber}`}
+                >
                   <input {...register("cardNumber")} placeholder="شماره کارت" />
                   <div className={styles.parentError}>
                     {errors.cardNumber && (
@@ -399,9 +412,11 @@ function ProfileTab({ initialData, onUpdate }) {
               </div>
               <div className={styles.informationBankCart}>
                 <p>شماره کارت</p>
-                <span>
-                  {initialData.cardNumber || <hr className={styles.empty} />}
-                </span>
+                <div className={styles.specificationsCart}>
+                  <span>
+                    {initialData.cardNumber || <hr className={styles.empty} />}
+                  </span>
+                </div>
               </div>
             </>
           )}

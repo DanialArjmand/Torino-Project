@@ -589,3 +589,31 @@
     font-size: 15px !important;
   }
 }
+
+@media (max-width: 500px) {
+  .supportWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .supportWrapper div:first-child {
+    width: 65%;
+  }
+
+  .supportInfo img {
+    width: 100px;
+  }
+
+  .supportInfo p {
+    font-size: 12px;
+  }
+
+  .supportInfo p span {
+    font-size: 12px;
+  }
+
+  .logosLicense img {
+    width: 40px;
+  }
+}

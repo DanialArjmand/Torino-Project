@@ -13,6 +13,10 @@
   margin-bottom: 20px;
 }
 
+.tourCard:last-child {
+  margin-bottom: 0;
+}
+
 .tourHeader {
   width: 100%;
   display: flex;
@@ -49,6 +53,7 @@
   font-size: 12px;
   font-weight: 400;
   word-spacing: 2px;
+  white-space: nowrap;
 }
 
 .statusCompleted {
@@ -98,8 +103,10 @@
 }
 
 .lineHr {
+  height: 0.5px;
   background-color: #00000033;
   border: none;
+  margin-top: 5px;
 }
 
 .tourMeta {
@@ -164,4 +171,59 @@
   justify-content: center;
   align-items: center;
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+  .myToursTab {
+    border: none;
+    padding: 5px 10px;
+  }
+
+  .itemHeader h2 {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .itemHeader span {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .itemHeader img {
+    margin-left: 7px;
+  }
+
+  .tourInfo {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .tourInfo p {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .tourInfo span {
+    font-size: 12px;
+    font-weight: 400;
+    word-spacing: 0;
+  }
+
+  .tourId {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .tourId span {
+    font-size: 12px;
+    font-weight: 400;
+  }
 }

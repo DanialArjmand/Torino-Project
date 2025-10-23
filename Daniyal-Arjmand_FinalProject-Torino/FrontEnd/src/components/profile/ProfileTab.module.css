@@ -4,6 +4,7 @@
   border-radius: 10px;
   text-align: right;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .mainItem h2 {
@@ -192,6 +193,13 @@
   align-items: flex-end;
 }
 
+.specificationsCart {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
 .informationBank div {
   display: flex;
   flex-direction: column;
@@ -304,6 +312,13 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
 }
 
+.editingGrid input:focus,
+.editingGrid select:focus,
+.inlineInput:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
 .lineHr {
   height: 0.5px;
   background-color: #00000033;
@@ -336,6 +351,11 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   outline: none;
   margin: 0px 0 0 10px;
+}
+
+.buttonSave:hover {
+  background-color: #1f8437;
+  transition: all 0.1s ease-in-out;
 }
 
 .buttonCancel {
@@ -396,4 +416,184 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   padding: 0 10px;
   font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .mainInformation {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .informationCustom div {
+    padding: 0 20px;
+  }
+
+  .editInformationButton {
+    width: 20%;
+  }
+
+  .informationCustom,
+  .informationCustomBirth {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .informationBankCart {
+    width: 80%;
+    justify-content: space-between;
+  }
+
+  .informationBank {
+    width: 80%;
+    justify-content: space-between;
+  }
+
+  .informationBankCart p {
+    padding: 0;
+  }
+
+  .informationBankCart span {
+    padding: 0;
+    margin: 0;
+  }
+
+  .specifications {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .specificationsCart {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainItem h2,
+  .editInformationButton button,
+  .mainItemOne p,
+  .mainItemOne span {
+    font-size: 13px;
+  }
+
+  .editInformationButton {
+    width: 30%;
+  }
+
+  .mainItemOne {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+    align-items: flex-end;
+    padding: 0 15px;
+  }
+
+  .mainChildOne,
+  .contactField {
+    width: 100%;
+    margin-right: 0;
+    justify-content: space-around;
+  }
+
+  .mainChildOne p {
+    margin-left: 90px;
+  }
+
+  .contactField {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .editView {
+    width: 100%;
+  }
+
+  .inlineInput input {
+    width: 100%;
+  }
+
+  .editAcceptButton {
+    width: 25%;
+  }
+
+  .email {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .email p {
+    padding: 0;
+  }
+
+  .editingGrid {
+    flex-direction: column;
+  }
+
+  .editingGrid > div {
+    width: 100%;
+    padding: 0;
+  }
+
+  .fieldFullName {
+    order: 1;
+  }
+  .fieldGender {
+    order: 2;
+  }
+  .fieldNationalCode {
+    order: 3;
+  }
+  .fieldBirthDate {
+    order: 4;
+  }
+  .fieldShaba {
+    order: 1;
+  }
+  .fieldCardNumber {
+    order: 3;
+  }
+  .fieldAccountNumber {
+    order: 2;
+  }
+
+  .informationBankCart {
+    width: 90%;
+    justify-content: space-around;
+  }
+
+  .informationBank {
+    width: 90%;
+    justify-content: space-around;
+  }
+
+  .buttons,
+  .buttonsBank {
+    gap: 10px;
+    margin: 10px 0 0 0;
+  }
+
+  .buttonSave,
+  .buttonCancel {
+    flex: 1;
+    width: auto;
+    margin: 0;
+  }
+}
+
+@media (max-width: 350px) {
+  .informationBankCart {
+    width: 100%;
+  }
+
+  .informationBank {
+    width: 100%;
+  }
+
+  .inlineInput {
+    width: 100%;
+  }
+
+  .editAcceptButton {
+    width: 30%;
+  }
 }
