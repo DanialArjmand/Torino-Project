@@ -466,6 +466,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  .buttonsBank {
+    margin: 10px 0 0 30px;
+  }
 }
 
 @media (max-width: 768px) {

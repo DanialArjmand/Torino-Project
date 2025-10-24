@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@/lib/schema/validationSchemas";
 import { updateUserProfile } from "@/lib/api/config";
 import { toast } from "react-hot-toast";
-import DatePicker from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
 import styles from "./ProfileTab.module.css";
 import "@/components/module/home/calender.css";
+
+import ProfileContactSection from "./ProfileContactSection";
+import ProfilePersonalSection from "./ProfilePersonalSection";
+import ProfileBankSection from "./ProfileBankSection";
 
 function ProfileTab({ initialData, onUpdate }) {
   const [isPersonalEditing, setIsPersonalEditing] = useState(false);
@@ -61,7 +62,6 @@ function ProfileTab({ initialData, onUpdate }) {
       "gender",
     ];
     const isValid = await trigger(fieldsToValidate);
-
     if (isValid) {
       const personalData = {
         fullName: getValues("fullName"),
@@ -76,7 +76,6 @@ function ProfileTab({ initialData, onUpdate }) {
   const handleSaveBank = async () => {
     const fieldsToValidate = ["shaba", "accountNumber", "cardNumber"];
     const isValid = await trigger(fieldsToValidate);
-
     if (isValid) {
       const bankData = {
         shaba: getValues("shaba"),
@@ -89,354 +88,41 @@ function ProfileTab({ initialData, onUpdate }) {
 
   return (
     <>
-      <div className={styles.mainItem}>
-        <div className={styles.mainHeaderInformation}>
-          <h2>اطلاعات حساب کاربری</h2>
-        </div>
-        <div className={styles.mainItemOne}>
-          <div className={styles.mainChildOne}>
-            <span>
-              {initialData?.mobile || <hr className={styles.empty} />}
-            </span>
-            <p>شماره موبایل</p>
-          </div>
-          <div className={styles.contactField}>
-            {isContactEditing ? (
-              <div className={styles.editView}>
-                <button
-                  type="button"
-                  disabled={isSubmitting}
-                  className={styles.editAcceptButton}
-                  onClick={handleSaveContact}
-                >
-                  تایید
-                </button>
-                <div className={styles.inputWithError}>
-                  <input
-                    {...register("email")}
-                    placeholder="آدرس ایمیل"
-                    className={styles.inlineInput}
-                  />
-                  <div className={styles.parentError}>
-                    {errors.email && (
-                      <p className={styles.error}>{errors.email.message}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className={styles.displayView}>
-                <button type="button" onClick={() => setIsContactEditing(true)}>
-                  {initialData?.email ? "ویرایش" : "افزودن"}
-                </button>
-                <img
-                  src="/images/edit.svg"
-                  alt="edit-icon"
-                  onClick={() => setIsContactEditing(true)}
-                />
-              </div>
-            )}
-            {!isContactEditing && (
-              <div className={styles.email}>
-                {initialData?.email || <hr className={styles.empty} />}
-                <p>ایمیل</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <ProfileContactSection
+        initialData={initialData}
+        isContactEditing={isContactEditing}
+        setIsContactEditing={setIsContactEditing}
+        isSubmitting={isSubmitting}
+        register={register}
+        errors={errors}
+        handleSaveContact={handleSaveContact}
+        styles={styles}
+      />
 
-      <div className={styles.mainItem}>
-        <div className={styles.mainHeaderInformation}>
-          <h2>اطلاعات شخصی</h2>
-          <div className={styles.editInformationButton}>
-            {!isPersonalEditing && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => setIsPersonalEditing(true)}
-                >
-                  ویرایش اطلاعات
-                </button>
-                <img
-                  src="/images/edit.svg"
-                  alt="edit-icon"
-                  onClick={() => setIsPersonalEditing(true)}
-                />
-              </>
-            )}
-          </div>
-        </div>
-        <div className={styles.mainInformation}>
-          {isPersonalEditing ? (
-            <div>
-              <div className={styles.editingGrid}>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldFullName}`}
-                >
-                  <input
-                    {...register("fullName")}
-                    placeholder="نام و نام خانوادگی"
-                  />
-                  <div className={styles.parentError}>
-                    {errors.fullName && (
-                      <p className={styles.error}>{errors.fullName.message}</p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldNationalCode}`}
-                >
-                  <input {...register("nationalCode")} placeholder="کد ملی" />
-                  <div className={styles.parentError}>
-                    {errors.nationalCode && (
-                      <p className={styles.error}>
-                        {errors.nationalCode.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldBirthDate}`}
-                >
-                  <Controller
-                    control={control}
-                    name="birthDate"
-                    render={({ field }) => (
-                      <DatePicker
-                        value={field.value}
-                        onChange={(dateObject) => {
-                          field.onChange(
-                            dateObject ? dateObject.toDate() : null
-                          );
-                        }}
-                        calendar={persian}
-                        locale={persian_fa}
-                        format="YYYY/MM/DD"
-                        placeholder="تاریخ تولد"
-                        inputClass={styles.customDateInput}
-                      />
-                    )}
-                  />
-                  <div className={styles.parentError}>
-                    {errors.birthDate && (
-                      <p className={styles.error}>{errors.birthDate.message}</p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldGender}`}
-                >
-                  <select
-                    {...register("gender")}
-                    className={styles.customGender}
-                  >
-                    <option value="">جنسیت</option>
-                    <option value="male">مرد</option>
-                    <option value="female">زن</option>
-                  </select>
-                  <div className={styles.parentError}>
-                    {errors.gender && (
-                      <p className={styles.error}>{errors.gender.message}</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <hr className={styles.lineHr} />
-              <div className={styles.buttons}>
-                <button
-                  type="button"
-                  className={styles.buttonCancel}
-                  onClick={() => {
-                    setIsPersonalEditing(false);
-                    reset(initialData);
-                  }}
-                >
-                  انصراف
-                </button>
+      <ProfilePersonalSection
+        initialData={initialData}
+        isPersonalEditing={isPersonalEditing}
+        setIsPersonalEditing={setIsPersonalEditing}
+        isSubmitting={isSubmitting}
+        register={register}
+        errors={errors}
+        control={control}
+        reset={reset}
+        handleSavePersonal={handleSavePersonal}
+        styles={styles}
+      />
 
-                <button
-                  type="button"
-                  className={styles.buttonSave}
-                  disabled={isSubmitting}
-                  onClick={handleSavePersonal}
-                >
-                  {isSubmitting ? "در حال تایید..." : "تایید"}
-                </button>
-              </div>
-            </div>
-          ) : (
-            <>
-              <div className={styles.informationCustom}>
-                <div>
-                  <p>نام و نام خانوادگی</p>
-                  <p>جنسیت</p>
-                </div>
-                <div>
-                  <span>
-                    {initialData?.fullName ||
-                      `${initialData?.firstName || ""} ${
-                        initialData?.lastName || ""
-                      }`.trim() || <hr className={styles.empty} />}
-                  </span>
-                  <span>
-                    {initialData?.gender === "male" ? (
-                      "مرد"
-                    ) : initialData?.gender === "female" ? (
-                      "زن"
-                    ) : (
-                      <hr className={styles.empty} />
-                    )}
-                  </span>
-                </div>
-              </div>
-              <div className={styles.informationCustomBirth}>
-                <div>
-                  <p>کد ملی</p>
-                  <p>تاریخ تولد</p>
-                </div>
-                <div>
-                  <span>
-                    {initialData?.nationalCode || (
-                      <hr className={styles.empty} />
-                    )}
-                  </span>
-                  <span>
-                    {initialData?.birthDate ? (
-                      new Date(initialData.birthDate).toLocaleDateString(
-                        "fa-IR"
-                      )
-                    ) : (
-                      <hr className={styles.empty} />
-                    )}
-                  </span>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className={styles.mainItem}>
-        <div className={styles.mainHeaderInformation}>
-          <h2>اطلاعات حساب بانکی</h2>
-          <div className={styles.editInformationButton}>
-            {!isBankEditing && (
-              <>
-                <button type="button" onClick={() => setIsBankEditing(true)}>
-                  ویرایش اطلاعات
-                </button>
-                <img
-                  src="/images/edit.svg"
-                  alt="edit-icon"
-                  onClick={() => setIsBankEditing(true)}
-                />
-              </>
-            )}
-          </div>
-        </div>
-        <div className={styles.mainInformation}>
-          {isBankEditing ? (
-            <div>
-              <div className={styles.editingGrid}>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldShaba}`}
-                >
-                  <input
-                    {...register("shaba")}
-                    placeholder="شماره شبا (بدون IR)"
-                  />
-                  <div className={styles.parentError}>
-                    {errors.shaba && (
-                      <p className={styles.error}>{errors.shaba.message}</p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldAccountNumber}`}
-                >
-                  <input
-                    {...register("accountNumber")}
-                    placeholder="شماره حساب"
-                  />
-                  <div className={styles.parentError}>
-                    {errors.accountNumber && (
-                      <p className={styles.error}>
-                        {errors.accountNumber.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div
-                  className={`${styles.inputWithError} ${styles.fieldCardNumber}`}
-                >
-                  <input {...register("cardNumber")} placeholder="شماره کارت" />
-                  <div className={styles.parentError}>
-                    {errors.cardNumber && (
-                      <p className={styles.error}>
-                        {errors.cardNumber.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <hr className={styles.lineHr} />
-              <div className={styles.buttonsBank}>
-                <button
-                  type="button"
-                  className={styles.buttonCancel}
-                  onClick={() => {
-                    setIsBankEditing(false);
-                    reset(initialData);
-                  }}
-                >
-                  انصراف
-                </button>
-
-                <button
-                  type="button"
-                  className={styles.buttonSave}
-                  disabled={isSubmitting}
-                  onClick={handleSaveBank}
-                >
-                  {isSubmitting ? "در حال تایید..." : "تایید"}
-                </button>
-              </div>
-            </div>
-          ) : (
-            <>
-              <div className={styles.informationBank}>
-                <div>
-                  <p>شماره شبا</p>
-                  <p>شماره حساب</p>
-                </div>
-                <div className={styles.specifications}>
-                  <span>
-                    {initialData?.shaba ? (
-                      `IR${initialData.shaba}`
-                    ) : (
-                      <hr className={styles.empty} />
-                    )}
-                  </span>
-                  <span>
-                    {initialData?.accountNumber || (
-                      <hr className={styles.empty} />
-                    )}
-                  </span>
-                </div>
-              </div>
-              <div className={styles.informationBankCart}>
-                <p>شماره کارت</p>
-                <div className={styles.specificationsCart}>
-                  <span>
-                    {initialData?.cardNumber || <hr className={styles.empty} />}
-                  </span>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+      <ProfileBankSection
+        initialData={initialData}
+        isBankEditing={isBankEditing}
+        setIsBankEditing={setIsBankEditing}
+        isSubmitting={isSubmitting}
+        register={register}
+        errors={errors}
+        reset={reset}
+        handleSaveBank={handleSaveBank}
+        styles={styles}
+      />
     </>
   );
 }
