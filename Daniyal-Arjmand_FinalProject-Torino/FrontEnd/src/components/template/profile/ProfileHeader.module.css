@@ -1,0 +1,120 @@
+.header {
+  width: 284px;
+  height: 170px;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  margin-left: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.headerItem {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16.7px 10px;
+  cursor: pointer;
+}
+
+.headerItem:hover {
+  background-color: #f0f0f0;
+}
+
+.headerItem.active {
+  background-color: #28a74540;
+  color: #28a745;
+}
+
+.hrLine {
+  height: 0.5px;
+  background-color: #00000033;
+  border: none;
+  margin: 0 10px;
+}
+
+.headerItem img {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+
+.headerItem p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.headerItem.active .icon {
+  background-color: #28a745;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  background-color: #282828;
+}
+
+.profileIcon {
+  -webkit-mask-image: url("/images/frame-black.svg");
+  mask-image: url("/images/frame-black.svg");
+}
+
+.toursIcon {
+  -webkit-mask-image: url("/images/sun-fog.svg");
+  mask-image: url("/images/sun-fog.svg");
+}
+
+.transactionsIcon {
+  -webkit-mask-image: url("/images/convert-card.svg");
+  mask-image: url("/images/convert-card.svg");
+}
+
+@media (max-width: 1024px) {
+  .header {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    margin-left: 0;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #00000033;
+  }
+
+  .hrLine {
+    display: none;
+  }
+
+  .headerItem {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 5px;
+    border-bottom: 3px solid transparent;
+  }
+
+  .headerItem:hover {
+    background-color: #f9f9f9;
+  }
+
+  .headerItem.active {
+    background-color: transparent;
+    border-bottom-color: #28a745;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerItem p {
+    font-size: 12px;
+  }
+  .icon {
+    width: 17px;
+    height: 17px;
+    margin-left: 5px;
+  }
+}

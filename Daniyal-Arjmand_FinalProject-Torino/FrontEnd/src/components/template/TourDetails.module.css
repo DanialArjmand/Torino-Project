@@ -1,0 +1,348 @@
+.parentContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  padding: 40px 0 90px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1188px;
+  border-radius: 10px;
+  border: 1px solid #00000033;
+  background-color: #fff;
+  padding-bottom: 15px;
+}
+
+.optionTour {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.TourDescription {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  border-right: 1px solid #00000040;
+  padding: 0 40px 0 0;
+}
+
+.content div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content p {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  padding-right: 10px;
+  color: #444444;
+}
+
+.content span {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  padding: 10px 0;
+}
+
+.contentBimeh {
+  display: flex;
+  flex-direction: column;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  border-right: 1px solid #00000040;
+  padding: 0 40px 0 0;
+}
+
+.contentBimeh div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.contentBimeh p {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  padding-right: 10px;
+  color: #444444;
+}
+
+.contentBimeh span {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  padding: 10px 0;
+}
+
+.lastContent {
+  display: flex;
+  flex-direction: column;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  padding: 0 10px 0 0;
+}
+
+.lastContent div {
+  display: flex;
+  align-items: center;
+}
+
+.lastContent p {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: 400;
+  padding-right: 10px;
+  color: #444444;
+}
+
+.lastContent span {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  padding: 7px 0;
+}
+
+.image {
+  padding: 30px 20px 15px;
+}
+
+.image img {
+  width: 397px;
+  height: 265px;
+  border-radius: 12px;
+}
+
+.destination {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 25px 0 15px;
+}
+
+.titleTour {
+  text-align: right;
+}
+
+.titleTour h1 {
+  font-size: 32px;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.titleTour p {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  color: #282828;
+}
+
+.tourLeader {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+
+.tourLeader div {
+  display: flex;
+  align-items: center;
+}
+
+.tourLeader div p {
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #7d7d7d;
+}
+
+.reservation {
+  width: 97%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.price span {
+  font-size: 28px;
+  font-weight: 500;
+  color: #009eca;
+}
+
+.price p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #282828cc;
+}
+
+.button {
+  width: 204px;
+  height: 56px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #28a745;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #1f8437;
+  transition: all 0.1s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 90%;
+  }
+
+  .optionTour {
+    flex-direction: column-reverse;
+  }
+
+  .image {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .destination {
+    align-items: center;
+  }
+
+  .titleTour {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px 10px;
+  }
+
+  .titleTour h1 {
+    padding: 0;
+  }
+
+  .tourLeader {
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px 10px 20px;
+  }
+
+  .reservation {
+    width: 100%;
+    flex-direction: row-reverse;
+    padding: 0 30px;
+  }
+
+  .TourDescription {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
+  }
+  .content,
+  .contentBimeh,
+  .lastContent {
+    border: none;
+    padding: 0;
+    align-items: center;
+  }
+  .content div,
+  .contentBimeh div,
+  .lastContent div {
+    justify-content: center;
+  }
+
+  .TourDescription > .content:nth-of-type(6),
+  .TourDescription > .lastContent {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .parentContainer {
+    padding: 20px 0 50px;
+  }
+
+  .destination h1 {
+    font-size: 24px;
+  }
+  .destination p {
+    font-size: 16px;
+  }
+  .tourLeader {
+    gap: 20px;
+    padding: 10px 10px 20px;
+  }
+
+  .tourLeader div p {
+    font-size: 16px;
+  }
+
+  .reservation {
+    flex-direction: row-reverse;
+    gap: 15px;
+  }
+  .button {
+    width: 45%;
+    font-size: 20px;
+    height: 40px;
+  }
+
+  .price p {
+    font-size: 10px;
+  }
+
+  .price span {
+    font-size: 22px;
+  }
+
+  .TourDescription > .content:nth-of-type(4),
+  .TourDescription > .content:nth-of-type(5),
+  .TourDescription > .content:nth-of-type(6),
+  .TourDescription > .lastContent {
+    display: none;
+  }
+
+  .content p,
+  .contentBimeh p {
+    font-size: 16px;
+  }
+  .content span,
+  .contentBimeh span {
+    font-size: 14px;
+  }
+}

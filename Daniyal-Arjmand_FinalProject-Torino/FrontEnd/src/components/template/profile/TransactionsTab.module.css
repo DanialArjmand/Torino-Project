@@ -1,0 +1,64 @@
+.mainItem {
+  width: 100%;
+  border: 1px solid #00000033;
+  border-radius: 10px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.transactionsTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+}
+
+.transactionsTable th,
+.transactionsTable td {
+  padding: 12px 15px;
+}
+
+.transactionsTable thead tr {
+  background-color: #f3f3f3;
+}
+
+.transactionsTable th {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+}
+
+.transactionsTable tbody {
+  background-color: #fff;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .transactionsTable thead {
+    display: none;
+  }
+  .transactionsTable tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .transactionsTable td {
+    display: block;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  .transactionsTable td::before {
+    content: attr(data-label);
+    float: right;
+    font-weight: bold;
+    margin-left: 1rem;
+  }
+}

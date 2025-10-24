@@ -1,0 +1,122 @@
+.infoContainer {
+  width: 307px;
+  height: 228px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 0 20px;
+}
+
+.infoText {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 10px 0;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+}
+
+.infoText p {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  color: #282828b2;
+}
+
+.infoContent img {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.parentInfoPrice {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoPrice {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 15px;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.infoPriceText {
+  color: #282828cc;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.infoPriceText span {
+  color: #009eca;
+  font-size: 28px;
+  font-weight: 500;
+  padding: 0 10px;
+}
+
+.infoPriceFinal {
+  color: #282828;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.button {
+  width: 283px;
+  height: 56px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  cursor: pointer;
+  margin-top: 7px;
+  outline: none;
+}
+
+.button:hover {
+  background-color: #1f8437;
+  transition: all 0.1s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+  .infoContainer {
+    width: 100%;
+    max-width: 865px;
+    height: auto;
+    padding: 0 0 20px;
+  }
+
+  .button {
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .infoContainer {
+    padding: 0 0 20px;
+  }
+
+  .infoText h1 {
+    font-size: 16px;
+  }
+  .infoText p {
+    font-size: 13px;
+  }
+
+  .infoPriceText span {
+    font-size: 24px;
+  }
+  .infoPriceFinal {
+    font-size: 14px;
+  }
+
+  .button {
+    width: 60%;
+    height: 50px;
+    font-size: 20px;
+    margin: 0;
+  }
+}

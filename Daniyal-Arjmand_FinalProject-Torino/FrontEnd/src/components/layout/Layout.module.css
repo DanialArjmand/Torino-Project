@@ -1,0 +1,630 @@
+.header {
+  width: 100%;
+  height: 74px;
+  box-shadow: 0 1px 4px #00000029;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 0 40px;
+}
+
+.header a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+  color: #282828;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.link .activeLink {
+  color: #28a745;
+}
+
+.link a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #282828;
+  transition: color 0.2s;
+}
+
+.link a:hover {
+  color: #959595;
+}
+
+.link img {
+  margin-left: 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 166px;
+  height: 44px;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  background: transparent;
+  border: 2px solid #28a745;
+  font-size: 18px;
+  font-weight: 500;
+  color: #28a745;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.loginButtonText span {
+  padding: 0 8px;
+}
+
+.buttons img {
+  margin-left: 4px;
+}
+
+.container {
+  min-height: 500px;
+}
+
+.lineHr {
+  height: 0.5px;
+  background-color: #00000033;
+  border: none;
+  margin: 0 175px;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+}
+
+.license {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #00000033;
+  flex-wrap: wrap;
+  padding-bottom: 25px;
+}
+
+.supportWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.supportInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.supportInfo .torinoLogo {
+  margin: 0;
+}
+
+.supportInfo p {
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 10px 0;
+}
+
+.supportInfo span {
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.logosLicense {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.logosLicense img {
+  margin-right: 0;
+}
+
+.description {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  color: #282828;
+}
+
+.description div {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.description h2 {
+  font-size: 24px;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-weight: 600;
+  padding-bottom: 17px;
+}
+
+.description a {
+  font-size: 18px;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-weight: 400;
+  padding: 2px 0;
+  cursor: pointer;
+}
+
+.websiteRights {
+  text-align: center;
+  font-size: 15px;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-weight: 400;
+  padding: 10px 0;
+}
+
+.userMenuContainer {
+  position: relative;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 11px;
+  transition: background-color 0.2s;
+  border: none;
+  background-color: transparent;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 18px;
+  font-weight: 500;
+  color: #28a745;
+}
+
+.userInfo:hover {
+  background-color: #f0f0f0;
+}
+
+.userInfo span {
+  padding: 0;
+}
+
+.userInfo img {
+  margin: 0;
+}
+
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.arrowIcon.arrowUp {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: -20;
+  background-color: #fff;
+  border-radius: 11px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  width: 246px;
+  z-index: 100;
+  animation: slideDown 0.3s ease-out forwards;
+  overflow: hidden;
+}
+
+.dropdownMenu li a,
+.dropdownMenu li button {
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 11px;
+  color: #333;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dropdownMenu li:hover {
+  background-color: #f4f4f4;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #282828;
+}
+
+.profileLink img {
+  margin: 0;
+}
+
+.profileIconWrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.profileIconWrapper img {
+  margin: 0;
+}
+
+.profileLinkNumber {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 11px;
+  color: #10411b;
+  cursor: pointer;
+  font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.profileLinkNumber span {
+  margin: 0 10px;
+}
+
+.logoutButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #0000001f;
+}
+
+.logoutButtonContainer img {
+  padding: 15px 10px 15px 0;
+  margin: 0;
+}
+
+.logoutButton {
+  color: red !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+.dropdownMenuClosing {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1061;
+}
+
+.hamburgerHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hamburger img {
+  width: 30px;
+  height: 30px;
+}
+
+.mobileMenuBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  animation: fadeIn 0.3s ease-out;
+}
+.mobileMenuBackdropClosing {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1060;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 12px;
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.mobileMenuLogo {
+  width: 120px;
+  height: auto;
+  align-self: center;
+  margin-bottom: 30px;
+}
+
+.mobileMenuClosing {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+.mobileMenu a {
+  font-family: "YekanBakh", sans-serif;
+  font-size: 18px;
+  color: #282828;
+  text-decoration: none;
+  padding: 15px 10px;
+  text-align: right;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.mobileMenu a:hover {
+  background-color: #f9f9f9;
+}
+
+.mobileMenu .activeLink {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.mobileMenu a img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%);
+  transition: filter 0.3s ease;
+}
+
+.activeMobileLink span {
+  color: #28a745 !important;
+}
+
+.mobileMenu .activeMobileLink img {
+  filter: invert(55%) sepia(81%) saturate(541%) hue-rotate(94deg)
+    brightness(96%) contrast(92%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 40px;
+    justify-content: space-between;
+  }
+  .link {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  .loginButton {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+  .loginButton .loginButtonText {
+    display: none;
+  }
+  .buttons img {
+    margin: 0;
+  }
+  .loginButton .loginIcon {
+    content: url("/images/login.svg");
+    width: 24px;
+    height: 24px;
+  }
+
+  .lineHr {
+    margin: 0 20px;
+  }
+
+  .license {
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 20px;
+    gap: 40px;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 450px;
+    justify-content: space-around;
+  }
+
+  .description div {
+    text-align: center;
+  }
+
+  .supportWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .supportInfo {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .logosLicense {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 280px;
+  }
+
+  .logosLicense img {
+    max-width: 60px;
+    height: auto;
+  }
+
+  .websiteRights {
+    padding-top: 15px;
+    border-top: 1px solid #00000033;
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .license {
+    gap: 30px;
+  }
+
+  .dropdownMenu {
+    width: auto;
+    left: 10px;
+    right: 10px;
+    top: calc(100% + 5px);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .dropdownMenu li {
+    font-size: 14px;
+  }
+
+  .profileLink a,
+  .logoutButton {
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .mobileMenu {
+    width: 210px;
+  }
+
+  .supportWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .supportWrapper div:first-child {
+    width: 65%;
+  }
+
+  .supportInfo img {
+    width: 100px;
+  }
+
+  .supportInfo p {
+    font-size: 12px;
+  }
+
+  .supportInfo p span {
+    font-size: 12px;
+  }
+
+  .logosLicense img {
+    width: 40px;
+  }
+}
