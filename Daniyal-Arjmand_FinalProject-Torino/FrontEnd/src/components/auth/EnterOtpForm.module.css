@@ -10,6 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(1.5px);
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  z-index: 1000;
 }
 
 .container {

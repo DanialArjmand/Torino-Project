@@ -1,9 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Layout from "@/components/layout/Layout";
-import { Toaster } from "react-hot-toast";
-import { AuthProvider } from "@/context/AuthContext";
-import { ModalProvider } from "@/context/ModalContext";
+import { AppProviders } from "@/providers/AppProviders";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,23 +20,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fa">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <AuthProvider>
-          <ModalProvider>
-            <Toaster
-              toastOptions={{
-                style: {
-                  fontFamily: "var(--font-iransans)",
-                  borderRadius: "10px",
-                  background: "#333",
-                  color: "#fff",
-                },
-              }}
-            />
-            <Layout>{children}</Layout>
-          </ModalProvider>
-        </AuthProvider>
+        <AppProviders>
+          <Layout>{children}</Layout>
+        </AppProviders>
       </body>
     </html>
   );
