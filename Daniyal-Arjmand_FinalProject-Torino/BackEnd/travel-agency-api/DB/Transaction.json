@@ -1,0 +1,135 @@
+[
+  {
+    "id": "0c652e34-5622-41f9-8e32-1b2b2057cc77",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 35000,
+    "type": "Purchase",
+    "createdAt": "2025-10-15T18:06:17.386Z"
+  },
+  {
+    "id": "a7e086da-f0b4-4a6e-bb8a-d7cf74246849",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 35000,
+    "type": "Purchase",
+    "createdAt": "2025-10-15T18:51:41.817Z"
+  },
+  {
+    "id": "b877caf7-3efa-4084-a798-8f23297c6855",
+    "userId": "6f177b84-4688-4a05-96db-fc4bd79c1052",
+    "amount": 105000,
+    "type": "Purchase",
+    "createdAt": "2025-10-15T20:21:23.875Z"
+  },
+  {
+    "id": "6671fb0b-7ca1-49af-8e22-5f3cc6a66720",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 35000,
+    "type": "Purchase",
+    "createdAt": "2025-10-16T14:02:25.917Z"
+  },
+  {
+    "id": "ac1af7f6-fe78-442f-b3ce-02465b608a3f",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 240000,
+    "type": "Purchase",
+    "createdAt": "2025-10-16T14:03:36.762Z"
+  },
+  {
+    "id": "625f12cf-f3fc-4e4c-b0bc-157b102e94a6",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 105000,
+    "type": "Purchase",
+    "createdAt": "2025-10-16T14:04:21.960Z"
+  },
+  {
+    "id": "06cb0f4a-6074-4216-ad9e-6e2b6b06e5b8",
+    "userId": "a5a8f443-d89f-4c58-b3ed-5ddfe0311c29",
+    "amount": 240000,
+    "type": "Purchase",
+    "createdAt": "2025-10-17T20:52:53.753Z"
+  },
+  {
+    "id": "bfcb6169-da34-4f34-a13f-c687578cad35",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 185000,
+    "type": "Purchase",
+    "createdAt": "2025-10-19T11:31:29.826Z"
+  },
+  {
+    "id": "afb09a44-4e54-44b0-bc93-f52619265fdc",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 35000,
+    "type": "Purchase",
+    "createdAt": "2025-10-19T11:43:31.573Z"
+  },
+  {
+    "id": "a67f66cf-f315-4007-95ca-4d9612f74458",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 35000,
+    "type": "Purchase",
+    "createdAt": "2025-10-19T13:39:16.054Z"
+  },
+  {
+    "id": "c479d508-c44d-4608-ae58-96fe036d6185",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 240000,
+    "type": "Purchase",
+    "createdAt": "2025-10-19T14:47:30.918Z"
+  },
+  {
+    "id": "36641445-7876-4f64-9a57-45ea5f81eb9e",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 185000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T00:09:14.496Z"
+  },
+  {
+    "id": "3a507c00-8b05-44dd-bc79-d0d12695e3d0",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 240000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T00:13:34.287Z"
+  },
+  {
+    "id": "f61bc186-c1fe-4724-81e1-95d9b6b0c571",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 240000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T00:31:27.062Z"
+  },
+  {
+    "id": "9b3601aa-3402-48a1-a011-6a69df3dc841",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 35000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T15:00:30.027Z"
+  },
+  {
+    "id": "59c7d9fb-e53a-4121-99a7-1d9ade8b3f3b",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 18000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T15:39:30.135Z"
+  },
+  {
+    "id": "61612f7d-1a6d-408e-9f20-5bec8979da47",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 105000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T17:51:58.184Z"
+  },
+  {
+    "id": "65093d63-5008-41b1-8104-19c5bb9dc384",
+    "userId": "2c91b797-d4cc-459c-a719-115ec05075ff",
+    "amount": 105000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T17:53:14.567Z"
+  },
+  {
+    "id": "7592be1c-4c53-48e3-96ed-95693f10d642",
+    "userId": "a5a8f443-d89f-4c58-b3ed-5ddfe0311c29",
+    "amount": 105000,
+    "type": "Purchase",
+    "createdAt": "2025-10-24T17:54:38.321Z"
+  }
+]

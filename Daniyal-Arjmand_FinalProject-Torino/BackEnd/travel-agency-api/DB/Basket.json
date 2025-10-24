@@ -1,0 +1,24 @@
+{
+  "id": "b2c3d4e5-f678-90ab-cdef-234567890abc",
+  "origin": {
+    "id": "2",
+    "name": "Sananndaj"
+  },
+  "destination": {
+    "id": "3",
+    "name": "Madrid"
+  },
+  "startDate": "2025-10-10T00:00:00.000Z",
+  "endDate": "2025-10-25T00:00:00.000Z",
+  "title": "تور مادرید",
+  "fleetVehicle": "ship",
+  "price": 240000,
+  "availableSeats": 10,
+  "capacity": 150,
+  "insurance": false,
+  "options": [
+    "راهنمای تور",
+    "نهار و شام"
+  ],
+  "image": "http://localhost:6500/static/images/madridTour.png"
+}
