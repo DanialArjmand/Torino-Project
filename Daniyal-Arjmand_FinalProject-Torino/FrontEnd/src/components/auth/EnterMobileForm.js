@@ -28,7 +28,6 @@ function EnterMobileForm({ onMobileSubmit, onClose, feedback, isLoading }) {
         <div className={styles.header}>
           <button
             onClick={() => {
-              console.log("clicked close");
               onClose();
             }}
             className={styles.closeButton}

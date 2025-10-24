@@ -34,8 +34,6 @@ function TourDetails({ tour }) {
       ? `${persianDays} روز و ${persianNights} شب`
       : `${persianDays} روزه`;
   const translatedVehicle = translateVehicle(tour.fleetVehicle);
-  const optionsString = tour.options ? tour.options.join("، ") : "";
-  const persianCapacity = formatToPersianNumber(tour.capacity);
   const persianAvailableSeats = formatToPersianNumber(tour.availableSeats);
 
   const handleReserveClick = async () => {

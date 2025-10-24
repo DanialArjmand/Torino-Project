@@ -19,7 +19,7 @@ function EnterOtpForm({
     control,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(otpSchema),
     mode: "onChange",
@@ -27,8 +27,6 @@ function EnterOtpForm({
   });
 
   const [timer, setTimer] = useState(120);
-
-  const otpValue = watch("otp");
 
   const onSubmit = (data) => {
     onOtpSubmit(data.otp);

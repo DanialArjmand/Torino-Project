@@ -22,7 +22,6 @@ export function ModalProvider({ children }) {
   return (
     <ModalContext.Provider value={value}>
       {children}
-
       {isModalOpen && <LoginPage onClose={closeModal} />}
     </ModalContext.Provider>
   );

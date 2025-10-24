@@ -6,7 +6,7 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 
 import { apiCityMap } from "@/data/apiCities";
-import styles from "@/components/module/home/Filter.module.css";
+import styles from "./Filter.module.css";
 import FilterDropdowns from "./FilterDropdowns";
 import "./calender.css";
 
@@ -94,7 +94,23 @@ export default function FilterSearchSection({ tours, onSearch }) {
   };
 
   const handleSearchClick = () => {
-    onSearch({ date, origin: origin.id, destination: destination.id });
+    const findCityId = (cityState) => {
+      if (cityState.id) return cityState.id;
+
+      if (cityState.name) {
+        const cityEntry = Object.entries(apiCityMap).find(
+          ([id, name]) => name === cityState.name.trim()
+        );
+        return cityEntry ? cityEntry[0] : "";
+      }
+      return "";
+    };
+
+    onSearch({
+      date,
+      origin: origin,
+      destination: destination,
+    });
   };
 
   const handleSelectCity = (city, type) => {

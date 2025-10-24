@@ -7,7 +7,7 @@ import { profileSchema } from "@/lib/schema/validationSchemas";
 import { updateUserProfile } from "@/lib/api/config";
 import { toast } from "react-hot-toast";
 import styles from "./ProfileTab.module.css";
-import "@/components/module/home/calender.css";
+import "@/components/module/home/filter/calender.css";
 
 import ProfileContactSection from "./ProfileContactSection";
 import ProfilePersonalSection from "./ProfilePersonalSection";

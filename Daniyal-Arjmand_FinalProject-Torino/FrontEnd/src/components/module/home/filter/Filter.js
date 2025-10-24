@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/components/module/home/Filter.module.css";
+import styles from "./Filter.module.css";
 import FilterSearchSection from "./FilterSearchSection";
 
 export default function Filter({ tours, onSearch }) {

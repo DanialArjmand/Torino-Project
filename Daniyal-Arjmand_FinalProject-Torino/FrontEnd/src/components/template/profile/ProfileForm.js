@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import styles from "@/components/profile/ProfileForm.module.css";
+import styles from "./ProfileForm.module.css";
 import ProfileHeader from "./ProfileHeader";
-import ProfileTab from "./ProfileTab";
+import ProfileTab from "./ProfileTab/ProfileTab";
 import MyToursTab from "./MyToursTab";
 import TransactionsTab from "./TransactionsTab";
 

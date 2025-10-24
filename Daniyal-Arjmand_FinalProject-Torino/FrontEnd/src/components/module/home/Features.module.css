@@ -42,19 +42,21 @@
 
 @media (max-width: 1024px) {
   .container {
-    flex-wrap: wrap; 
+    flex-direction: column-reverse;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 30px;
   }
-  
+
   .option {
-    flex-basis: 45%; 
+    flex-basis: 45%;
     min-width: 320px;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 40px;
     width: 90%;
@@ -66,7 +68,7 @@
     max-width: 350px;
     justify-content: flex-start;
   }
-  
+
   .option img {
     width: 80px;
     height: auto;
@@ -76,7 +78,7 @@
   .option div {
     text-align: right;
   }
-  
+
   .option div h3 {
     font-size: 22px;
   }

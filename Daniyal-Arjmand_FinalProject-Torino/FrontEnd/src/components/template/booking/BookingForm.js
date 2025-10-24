@@ -4,8 +4,8 @@ import { Controller } from "react-hook-form";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-import styles from "@/components/booking/BookingForm.module.css";
-import "@/components/module/home/calender.css";
+import styles from "./BookingForm.module.css";
+import "@/components/module/home/filter/calender.css";
 
 function BookingForm({ register, control, errors }) {
   return (
