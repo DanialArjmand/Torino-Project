@@ -71,6 +71,11 @@
   font-weight: 300;
 }
 
+.input:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
 .containerError {
   height: 50px;
 }

@@ -34,7 +34,7 @@ function ProfilePageClient() {
       key={user?.id || "user-form"}
       initialData={user}
       onUpdate={async (updatedUser) => {
-        await mutate(updatedUser, false);
+        await mutate((currentUser) => ({ ...currentUser, ...updatedUser }));
       }}
     />
   );

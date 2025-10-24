@@ -143,6 +143,21 @@
   background-color: #f5f5f5;
 }
 
+.dropdown li.highlighted {
+  background-color: #f5f5f5;
+}
+
+.noResult {
+  padding: 10px 15px;
+  color: #888;
+  text-align: center;
+  cursor: default;
+}
+
+.noResult:hover {
+  background-color: transparent;
+}
+
 @media (max-width: 1024px) {
   .title {
     font-size: 24px;

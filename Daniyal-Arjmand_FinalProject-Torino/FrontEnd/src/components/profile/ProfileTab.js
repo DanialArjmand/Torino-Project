@@ -54,23 +54,36 @@ function ProfileTab({ initialData, onUpdate }) {
   };
 
   const handleSavePersonal = async () => {
-    const isValid = await trigger([
+    const fieldsToValidate = [
       "fullName",
       "nationalCode",
       "birthDate",
       "gender",
-    ]);
+    ];
+    const isValid = await trigger(fieldsToValidate);
+
     if (isValid) {
-      const data = getValues();
-      onSubmit(data);
+      const personalData = {
+        fullName: getValues("fullName"),
+        nationalCode: getValues("nationalCode"),
+        birthDate: getValues("birthDate"),
+        gender: getValues("gender"),
+      };
+      onSubmit(personalData);
     }
   };
 
   const handleSaveBank = async () => {
-    const isValid = await trigger(["shaba", "accountNumber", "cardNumber"]);
+    const fieldsToValidate = ["shaba", "accountNumber", "cardNumber"];
+    const isValid = await trigger(fieldsToValidate);
+
     if (isValid) {
-      const data = getValues();
-      onSubmit(data);
+      const bankData = {
+        shaba: getValues("shaba"),
+        accountNumber: getValues("accountNumber"),
+        cardNumber: getValues("cardNumber"),
+      };
+      onSubmit(bankData);
     }
   };
 
@@ -82,7 +95,9 @@ function ProfileTab({ initialData, onUpdate }) {
         </div>
         <div className={styles.mainItemOne}>
           <div className={styles.mainChildOne}>
-            <span>{initialData.mobile || "-"}</span>
+            <span>
+              {initialData?.mobile || <hr className={styles.empty} />}
+            </span>
             <p>شماره موبایل</p>
           </div>
           <div className={styles.contactField}>
@@ -112,7 +127,7 @@ function ProfileTab({ initialData, onUpdate }) {
             ) : (
               <div className={styles.displayView}>
                 <button type="button" onClick={() => setIsContactEditing(true)}>
-                  افزودن
+                  {initialData?.email ? "ویرایش" : "افزودن"}
                 </button>
                 <img
                   src="/images/edit.svg"
@@ -123,7 +138,7 @@ function ProfileTab({ initialData, onUpdate }) {
             )}
             {!isContactEditing && (
               <div className={styles.email}>
-                {initialData.email || <hr className={styles.empty} />}
+                {initialData?.email || <hr className={styles.empty} />}
                 <p>ایمیل</p>
               </div>
             )}
@@ -259,15 +274,15 @@ function ProfileTab({ initialData, onUpdate }) {
                 </div>
                 <div>
                   <span>
-                    {initialData.fullName ||
-                      `${initialData.firstName || ""} ${
-                        initialData.lastName || ""
+                    {initialData?.fullName ||
+                      `${initialData?.firstName || ""} ${
+                        initialData?.lastName || ""
                       }`.trim() || <hr className={styles.empty} />}
                   </span>
                   <span>
-                    {initialData.gender === "male" ? (
+                    {initialData?.gender === "male" ? (
                       "مرد"
-                    ) : initialData.gender === "female" ? (
+                    ) : initialData?.gender === "female" ? (
                       "زن"
                     ) : (
                       <hr className={styles.empty} />
@@ -282,12 +297,12 @@ function ProfileTab({ initialData, onUpdate }) {
                 </div>
                 <div>
                   <span>
-                    {initialData.nationalCode || (
+                    {initialData?.nationalCode || (
                       <hr className={styles.empty} />
                     )}
                   </span>
                   <span>
-                    {initialData.birthDate ? (
+                    {initialData?.birthDate ? (
                       new Date(initialData.birthDate).toLocaleDateString(
                         "fa-IR"
                       )
@@ -397,14 +412,14 @@ function ProfileTab({ initialData, onUpdate }) {
                 </div>
                 <div className={styles.specifications}>
                   <span>
-                    {initialData.shaba ? (
+                    {initialData?.shaba ? (
                       `IR${initialData.shaba}`
                     ) : (
                       <hr className={styles.empty} />
                     )}
                   </span>
                   <span>
-                    {initialData.accountNumber || (
+                    {initialData?.accountNumber || (
                       <hr className={styles.empty} />
                     )}
                   </span>
@@ -414,7 +429,7 @@ function ProfileTab({ initialData, onUpdate }) {
                 <p>شماره کارت</p>
                 <div className={styles.specificationsCart}>
                   <span>
-                    {initialData.cardNumber || <hr className={styles.empty} />}
+                    {initialData?.cardNumber || <hr className={styles.empty} />}
                   </span>
                 </div>
               </div>

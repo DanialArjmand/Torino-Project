@@ -85,6 +85,13 @@
   color: #00000080;
 }
 
+.inputs input:focus,
+.inputs select:focus,
+.inputsData input:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
 .customDateInput {
   width: 100%;
   height: 48px;

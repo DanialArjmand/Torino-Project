@@ -78,6 +78,11 @@
   font-size: 20px;
 }
 
+.otpInput:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
 .containerError {
   height: 25px;
   display: flex;

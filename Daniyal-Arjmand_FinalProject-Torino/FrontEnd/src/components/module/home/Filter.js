@@ -10,19 +10,18 @@ import styles from "@/components/module/home/Filter.module.css";
 import "./calender.css";
 
 function Filter({ tours, onSearch }) {
- const [date, setDate] = useState([]);
+  const [date, setDate] = useState([]);
   const [origin, setOrigin] = useState({ id: "", name: "" });
   const [destination, setDestination] = useState({ id: "", name: "" });
-
   const [isOriginOpen, setIsOriginOpen] = useState(false);
   const [isDestinationOpen, setIsDestinationOpen] = useState(false);
+  const [highlightedOriginIndex, setHighlightedOriginIndex] = useState(-1);
+  const [highlightedDestinationIndex, setHighlightedDestinationIndex] =
+    useState(-1);
 
   const handleSearchClick = () => {
     let originId = origin.id;
     let destinationId = destination.id;
-
-    // ✅ راه‌حل باگ جستجوی متنی:
-    // اگر ID مبدا وجود نداشت، سعی کن آن را از روی نام تایپ شده پیدا کنی
     if (!originId && origin.name) {
       const cityEntry = Object.entries(apiCityMap).find(
         ([id, name]) => name === origin.name.trim()
@@ -32,7 +31,6 @@ function Filter({ tours, onSearch }) {
       }
     }
 
-    // اگر ID مقصد وجود نداشت، همین کار را برای آن هم انجام بده
     if (!destinationId && destination.name) {
       const cityEntry = Object.entries(apiCityMap).find(
         ([id, name]) => name === destination.name.trim()
@@ -48,6 +46,10 @@ function Filter({ tours, onSearch }) {
       destination: destinationId,
     });
   };
+
+  const allCities = useMemo(() => {
+    return Object.entries(apiCityMap).map(([id, name]) => ({ id, name }));
+  }, []);
 
   const popularCities = useMemo(() => {
     if (!tours || tours.length === 0) return [];
@@ -70,6 +72,61 @@ function Filter({ tours, onSearch }) {
         name: apiCityMap[cityId] || `شهر ${cityId}`,
       }));
   }, [tours]);
+
+  const filteredDestinations = useMemo(() => {
+    if (!destination.name.trim()) {
+      return popularCities;
+    }
+    return allCities.filter((city) =>
+      city.name.startsWith(destination.name.trim())
+    );
+  }, [destination.name, popularCities, allCities]);
+
+  const filteredOrigins = useMemo(() => {
+    if (!origin.name.trim()) {
+      return popularCities;
+    }
+    return allCities.filter((city) => city.name.startsWith(origin.name.trim()));
+  }, [origin.name, popularCities, allCities]);
+
+  const handleKeyDown = (e, type) => {
+    const list = type === "origin" ? filteredOrigins : filteredDestinations;
+    const setHighlightedIndex =
+      type === "origin"
+        ? setHighlightedOriginIndex
+        : setHighlightedDestinationIndex;
+    const highlightedIndex =
+      type === "origin" ? highlightedOriginIndex : highlightedDestinationIndex;
+    const setCity = type === "origin" ? setOrigin : setDestination;
+    const setIsOpen =
+      type === "origin" ? setIsOriginOpen : setIsDestinationOpen;
+
+    if (!list.length) return;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        setHighlightedIndex((prevIndex) => (prevIndex + 1) % list.length);
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        setHighlightedIndex(
+          (prevIndex) => (prevIndex - 1 + list.length) % list.length
+        );
+        break;
+      case "Enter":
+        e.preventDefault();
+        if (highlightedIndex >= 0 && highlightedIndex < list.length) {
+          const selectedCity = list[highlightedIndex];
+          setCity({ id: selectedCity.id, name: selectedCity.name });
+          setIsOpen(false);
+        }
+        break;
+      case "Escape":
+        setIsOpen(false);
+        break;
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -104,16 +161,24 @@ function Filter({ tours, onSearch }) {
             onChange={(e) => setDestination({ id: "", name: e.target.value })}
             onFocus={() => setIsDestinationOpen(true)}
             onBlur={() => setTimeout(() => setIsDestinationOpen(false), 150)}
+            onKeyDown={(e) => handleKeyDown(e, "destination")}
           />
           <img src="/images/global-search.svg" alt="Global Search" />
           {isDestinationOpen && (
             <div className={styles.dropdown}>
-              <h4 className={styles.dropdownHeader}>پرتردد</h4>
+              <h4 className={styles.dropdownHeader}>
+                {destination.name.trim() ? "نتایج جستجو" : "پرتردد"}
+              </h4>
               <ul dir="rtl">
-                {popularCities.map((city) => (
+                {filteredDestinations.map((city, index) => (
                   <li
                     key={city.id}
-                    onClick={() => {
+                    className={
+                      index === highlightedDestinationIndex
+                        ? styles.highlighted
+                        : ""
+                    }
+                    onMouseDown={() => {
                       setDestination({ id: city.id, name: city.name });
                       setIsDestinationOpen(false);
                     }}
@@ -126,6 +191,10 @@ function Filter({ tours, onSearch }) {
                     <span>{city.name}</span>
                   </li>
                 ))}
+                {filteredDestinations.length === 0 &&
+                  destination.name.trim() && (
+                    <li className={styles.noResult}>نتیجه‌ای یافت نشد</li>
+                  )}
               </ul>
             </div>
           )}
@@ -138,16 +207,22 @@ function Filter({ tours, onSearch }) {
             onChange={(e) => setOrigin({ id: "", name: e.target.value })}
             onFocus={() => setIsOriginOpen(true)}
             onBlur={() => setTimeout(() => setIsOriginOpen(false), 150)}
+            onKeyDown={(e) => handleKeyDown(e, "origin")}
           />
           <img src="/images/location.svg" alt="Location" />
           {isOriginOpen && (
             <div className={styles.dropdown}>
-              <h4 className={styles.dropdownHeader}>پرتردد</h4>
+              <h4 className={styles.dropdownHeader}>
+                {origin.name.trim() ? "نتایج جستجو" : "پرتردد"}
+              </h4>
               <ul dir="rtl">
-                {popularCities.map((city) => (
+                {filteredOrigins.map((city, index) => (
                   <li
                     key={city.id}
-                    onClick={() => {
+                    className={
+                      index === highlightedOriginIndex ? styles.highlighted : ""
+                    }
+                    onMouseDown={() => {
                       setOrigin({ id: city.id, name: city.name });
                       setIsOriginOpen(false);
                     }}
@@ -160,6 +235,9 @@ function Filter({ tours, onSearch }) {
                     <span>{city.name}</span>
                   </li>
                 ))}
+                {filteredOrigins.length === 0 && origin.name.trim() && (
+                  <li className={styles.noResult}>نتیجه‌ای یافت نشد</li>
+                )}
               </ul>
             </div>
           )}

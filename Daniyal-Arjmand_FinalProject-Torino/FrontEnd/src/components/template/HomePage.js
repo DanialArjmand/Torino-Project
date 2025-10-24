@@ -5,7 +5,6 @@ import useSWR from "swr";
 import api from "@/lib/api/config";
 import dynamic from "next/dynamic";
 import Filter from "../module/home/Filter";
-import { DateObject } from "react-multi-date-picker";
 
 import styles from "./Home.module.css";
 
@@ -27,38 +26,42 @@ export default function HomePage({ initialTours }) {
 
   const apiUrl = useMemo(() => {
     const params = new URLSearchParams();
-
     if (filters.origin) {
       params.append("originId", filters.origin);
     }
     if (filters.destination) {
       params.append("destinationId", filters.destination);
     }
-    if (filters.date && filters.date.length === 2) {
-      // ✅ راه‌حل نهایی و بدون باگ منطقه زمانی:
-      
-      // ۱. آبجکت تاریخ شمسی را به یک آبجکت تاریخ میلادی تبدیل می‌کنیم.
-      //    این کار به صورت خالص و بدون درگیر شدن با منطقه زمانی سیستم انجام می‌شود.
-      const gregorianStart = new DateObject(filters.date[0]).convert("gregorian", "en");
-      const gregorianEnd = new DateObject(filters.date[1]).convert("gregorian", "en");
-
-      // ۲. آبجکت میلادی را به فرمت رشته‌ای دقیق مورد نیاز API تبدیل می‌کنیم.
-      params.append("startDate", gregorianStart.format("YYYY-MM-DD"));
-      params.append("endDate", gregorianEnd.format("YYYY-MM-DD"));
-    }
-    
     const queryString = params.toString();
     return queryString ? `/tour?${queryString}` : "/tour";
-  }, [filters]);
+  }, [filters.origin, filters.destination]);
 
   const {
-    data: filteredTours,
+    data: toursFromApi,
     error,
     isLoading,
   } = useSWR(apiUrl, fetcher, {
     fallbackData: initialTours,
     keepPreviousData: true,
   });
+
+  const displayedTours = useMemo(() => {
+    if (!toursFromApi) return [];
+
+    if (!filters.date || filters.date.length !== 2) {
+      return toursFromApi;
+    }
+
+    const filterStart = filters.date[0].toDate().getTime();
+    const filterEnd = filters.date[1].toDate().getTime();
+
+    return toursFromApi.filter((tour) => {
+      if (!tour.startDate) return false;
+      const tourStart = new Date(tour.startDate).getTime();
+
+      return tourStart >= filterStart && tourStart <= filterEnd;
+    });
+  }, [toursFromApi, filters.date]);
 
   const handleSearch = (newFilters) => {
     setFilters(newFilters);
@@ -73,7 +76,7 @@ export default function HomePage({ initialTours }) {
       ) : isLoading ? (
         <p className={styles.text}>در حال جستجوی تورها...</p>
       ) : (
-        <TourList tours={filteredTours} />
+        <TourList tours={displayedTours} />
       )}
 
       <Advertisement />

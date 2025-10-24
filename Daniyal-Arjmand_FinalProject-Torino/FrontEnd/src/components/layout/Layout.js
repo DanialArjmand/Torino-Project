@@ -180,6 +180,12 @@ function Layout({ children }) {
                 isMobileMenuClosing ? styles.mobileMenuClosing : ""
               }`}
             >
+
+              <img
+                src="/images/Torino1.svg"
+                alt="Torino Logo"
+                className={styles.mobileMenuLogo}
+              />
               <Link
                 href={"/"}
                 className={pathname === "/" ? styles.activeMobileLink : ""}
