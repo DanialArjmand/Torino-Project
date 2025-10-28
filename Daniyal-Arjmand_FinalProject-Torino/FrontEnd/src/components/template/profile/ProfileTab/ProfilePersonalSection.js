@@ -92,11 +92,20 @@ function ProfilePersonalSection({
                 </div>
               </div>
               <div className={`${styles.inputWithError} ${styles.fieldGender}`}>
-                <select {...register("gender")} className={styles.customGender}>
-                  <option value="">جنسیت</option>
+                <select
+                  id="gender"
+                  className={styles.customGender}
+                  {...register("gender", {
+                    required: "انتخاب جنسیت الزامی است",
+                  })}
+                  defaultValue=""
+                >
                   <option value="male">مرد</option>
                   <option value="female">زن</option>
                 </select>
+                <label htmlFor="gender" className={styles.floatingLabel}>
+                  جنسیت
+                </label>
                 <div className={styles.parentError}>
                   {errors.gender && (
                     <p className={styles.error}>{errors.gender.message}</p>
