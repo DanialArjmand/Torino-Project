@@ -73,6 +73,7 @@ function ProfilePersonalSection({
                   name="birthDate"
                   render={({ field }) => (
                     <DatePicker
+                      portal
                       value={field.value}
                       onChange={(dateObject) => {
                         field.onChange(dateObject ? dateObject.toDate() : null);

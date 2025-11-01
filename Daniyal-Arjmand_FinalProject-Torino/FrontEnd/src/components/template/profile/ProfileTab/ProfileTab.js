@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "@/lib/schema/validationSchemas";
-import { updateUserProfile } from "@/lib/api/config";
+import { updateUserProfile } from "@/app/api/config";
 import { toast } from "react-hot-toast";
 import styles from "./ProfileTab.module.css";
 import "@/components/module/home/filter/calender.css";
@@ -24,6 +24,7 @@ function ProfileTab({ initialData, onUpdate }) {
     trigger,
     control,
     getValues,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(profileSchema),
@@ -122,6 +123,7 @@ function ProfileTab({ initialData, onUpdate }) {
         reset={reset}
         handleSaveBank={handleSaveBank}
         styles={styles}
+        watch={watch}
       />
     </>
   );

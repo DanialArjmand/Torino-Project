@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { bookingSchema } from "@/lib/schema/validationSchemas";
 import { useRouter } from "next/navigation";
-import { createOrder, getUserProfile } from "@/lib/api/config";
+import { createOrder, getUserProfile } from "@/app/api/config";
 import { toast } from "react-hot-toast";
 import useSWR from "swr";
 import BookingInformation from "./BookingInformation";

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import useSWR from "swr";
-import api from "@/lib/api/config";
+import api from "@/app/api/config";
 import dynamic from "next/dynamic";
 import Filter from "../module/home/filter/Filter";
 import { apiCityMap } from "@/data/apiCities";

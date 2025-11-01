@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EnterMobileForm from "@/components/auth/EnterMobileForm";
 import EnterOtpForm from "@/components/auth/EnterOtpForm";
-import { sendOtp, checkOtp } from "@/lib/api/config";
+import { sendOtp, checkOtp } from "@/app/api/config";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Cookies from "js-cookie";

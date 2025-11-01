@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import api from "@/lib/api/config";
+import api from "@/app/api/config";
 import BookingWrapper from "@/components/template/booking/BookingWrapper";
 
 async function getTourDetails(id) {
