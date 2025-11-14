@@ -9,7 +9,7 @@ import {
   formatToPersianNumber,
   translateVehicle,
   calculateTourDuration,
-} from "@/lib/formatters";
+} from "@/utils/formatters";
 import { useAuth } from "@/context/AuthContext";
 import { useModal } from "@/context/ModalContext";
 import { useState } from "react";

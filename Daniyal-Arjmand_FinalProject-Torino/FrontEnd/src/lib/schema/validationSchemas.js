@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { toEnglishDigits } from "@/lib/formatters";
+import { toEnglishDigits } from "@/utils/formatters";
 
 export const mobileSchema = yup.object().shape({
   mobile: yup

@@ -5,7 +5,7 @@ import {
   formatToPersianNumber,
   translateVehicle,
   calculateTourDuration,
-} from "@/lib/formatters";
+} from "@/utils/formatters";
 import { translateCityById } from "@/lib/translators";
 import { addToBasket } from "@/app/api/config";
 import { useState } from "react";

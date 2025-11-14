@@ -1,5 +1,8 @@
 import React from "react";
-import { calculateTourDuration, formatToPersianNumber } from "@/lib/formatters";
+import {
+  calculateTourDuration,
+  formatToPersianNumber,
+} from "@/utils/formatters";
 import styles from "./BookingInformation.module.css";
 
 function BookingInformation({ tour }) {
