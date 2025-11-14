@@ -9,11 +9,11 @@ import {
   formatToPersianNumber,
   translateVehicle,
   calculateTourDuration,
-} from "@/lib/formatters";
+} from "@/utils/formatters";
 import { useAuth } from "@/context/AuthContext";
 import { useModal } from "@/context/ModalContext";
 import { useState } from "react";
-import { addToBasket } from "@/lib/api/config";
+import { addToBasket } from "@/app/api/config";
 import { toast } from "react-hot-toast";
 
 function TourCard({ tour, index }) {

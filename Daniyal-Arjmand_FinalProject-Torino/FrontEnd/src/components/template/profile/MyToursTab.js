@@ -1,9 +1,9 @@
 "use client";
 
 import useSWR from "swr";
-import { getPurchasedTours } from "@/lib/api/config";
+import { getPurchasedTours } from "@/app/api/config";
 import { translateCityById } from "@/lib/translators";
-import { formatToJalali, formatToPersianNumber } from "@/lib/formatters";
+import { formatToJalali, formatToPersianNumber } from "@/utils/formatters";
 
 import styles from "./MyToursTab.module.css";
 

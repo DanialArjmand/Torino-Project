@@ -1,11 +1,11 @@
 "use client";
 
 import useSWR from "swr";
-import { getTransactions } from "@/lib/api/config";
+import { getTransactions } from "@/app/api/config";
 import {
   formatToShortJalaliDateTime,
   formatToPersianNumber,
-} from "@/lib/formatters";
+} from "@/utils/formatters";
 
 import styles from "./TransactionsTab.module.css";
 

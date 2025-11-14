@@ -1,5 +1,7 @@
 "use client";
 
+import { getBankByCardNumber } from "iran-bank-detector";
+
 function ProfileBankSection({
   initialData,
   isBankEditing,
@@ -10,7 +12,12 @@ function ProfileBankSection({
   handleSaveBank,
   reset,
   styles,
+  watch,
 }) {
+  const cardNumberValue = watch ? watch("cardNumber") : "";
+  const editingBank = getBankByCardNumber(cardNumberValue);
+  const displayBank = getBankByCardNumber(initialData?.cardNumber);
+
   return (
     <div className={styles.mainItem}>
       <div className={styles.mainHeaderInformation}>
@@ -70,6 +77,18 @@ function ProfileBankSection({
                   )}
                 </div>
               </div>
+              {editingBank && (
+                <div className={styles.bankInfoContainer}>
+                  <img
+                    src={editingBank.logo}
+                    alt={editingBank.bankName}
+                    className={styles.bankLogo}
+                  />
+                  <span className={styles.bankName}>
+                    {editingBank.bankName}
+                  </span>
+                </div>
+              )}
             </div>
             <hr className={styles.lineHr} />
             <div className={styles.buttonsBank}>
@@ -97,7 +116,7 @@ function ProfileBankSection({
         ) : (
           <>
             <div className={styles.informationBank}>
-              <div>
+              <div className={styles.cardNumber}>
                 <p>شماره شبا</p>
                 <p>شماره حساب</p>
               </div>
@@ -117,12 +136,26 @@ function ProfileBankSection({
               </div>
             </div>
             <div className={styles.informationBankCart}>
-              <p>شماره کارت</p>
-              <div className={styles.specificationsCart}>
-                <span>
-                  {initialData?.cardNumber || <hr className={styles.empty} />}
-                </span>
+              <div className={styles.contentCardNumber}>
+                <p>شماره کارت</p>
+                <div className={styles.specificationsCart}>
+                  <span>
+                    {initialData?.cardNumber || <hr className={styles.empty} />}
+                  </span>
+                </div>
               </div>
+              {displayBank && (
+                <div className={styles.bankInfoDisplay}>
+                  <img
+                    src={displayBank.logo}
+                    alt={displayBank.bankName}
+                    className={styles.bankLogoDisplay}
+                  />
+                  <span className={styles.bankNameDisplay}>
+                    {displayBank.bankName}
+                  </span>
+                </div>
+              )}
             </div>
           </>
         )}

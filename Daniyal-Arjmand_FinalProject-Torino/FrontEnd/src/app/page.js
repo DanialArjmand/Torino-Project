@@ -1,5 +1,5 @@
 import HomePage from "@/components/template/HomePage";
-import api from "@/lib/api/config";
+import api from "@/app/api/config";
 
 async function getInitialTours() {
   try {

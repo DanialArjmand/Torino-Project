@@ -148,10 +148,9 @@
 }
 
 .noResult {
-  padding: 10px 15px;
+  padding: 13px 11px !important;
   color: #888;
   text-align: center;
-  cursor: default;
 }
 
 .noResult:hover {

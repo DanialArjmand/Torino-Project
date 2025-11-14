@@ -183,7 +183,7 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
-  width: 35%;
+  width: 40%;
 }
 
 .specifications {
@@ -222,9 +222,21 @@
 
 .informationBankCart {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: flex-start;
   width: 50%;
+}
+
+.cardNumber {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contentCardNumber {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .informationBankCart p {
@@ -241,6 +253,10 @@
   font-weight: 400;
   color: #282828;
   font-family: "Vazir-FD", sans-serif, Arial, Helvetica;
+}
+
+.inputWithError {
+  position: relative;
 }
 
 .contactField {
@@ -384,8 +400,8 @@
   direction: rtl;
   text-align: right;
   width: 100%;
-  padding: 0 10px;
-  margin: 0 7px;
+  height: 45px;
+  padding: 10px;
   background-image: url("/images/arrow-down-black.svg");
   background-repeat: no-repeat;
   background-position: left 10px center;
@@ -394,6 +410,30 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+.floatingLabel {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  color: #00000080;
+  font-size: 11px;
+  font-weight: 400;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  background-color: #fff;
+  padding: 0 4px;
+}
+
+.customGender:focus + .floatingLabel,
+.customGender:valid + .floatingLabel {
+  top: -8px;
+  font-size: 11px;
+}
+
+.customGender:focus + .floatingLabel {
+  color: #28a745;
 }
 
 .customDateInput {
@@ -416,6 +456,47 @@
   font-family: "YekanBakh", sans-serif, Arial, Helvetica;
   padding: 0 10px;
   font-size: 14px;
+}
+
+.bankInfoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 45px;
+  margin: 0 5px 0 20px;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 100px;
+  margin-bottom: 25px;
+}
+
+.bankLogo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.bankName {
+  font-size: 14px;
+  font-family: "YekanBakh", sans-serif, Arial, Helvetica;
+  color: #282828;
+}
+
+.bankInfoDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.bankLogoDisplay {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.bankNameDisplay {
+  padding: 10px 20px 10px 10px !important;
+  margin: 0 !important;
 }
 
 @media (max-width: 1024px) {
@@ -469,6 +550,15 @@
 
   .buttonsBank {
     margin: 10px 0 0 30px;
+  }
+
+  .contentCardNumber {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bankNameDisplay {
+    padding: 20px 0 20px 10px !important;
   }
 }
 
@@ -582,6 +672,19 @@
     width: auto;
     margin: 0;
   }
+
+  .contentCardNumber {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .bankNameDisplay {
+    padding: 20px 0 20px 10px !important;
+  }
+
+  .bankInfoDisplay {
+    width: 92%;
+  }
 }
 
 @media (max-width: 350px) {
@@ -599,5 +702,9 @@
 
   .editAcceptButton {
     width: 30%;
+  }
+
+  .bankInfoDisplay {
+    width: 95%;
   }
 }

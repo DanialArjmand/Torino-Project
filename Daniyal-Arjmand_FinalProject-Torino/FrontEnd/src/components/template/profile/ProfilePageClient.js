@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import { getUserProfile } from "@/lib/api/config";
+import { getUserProfile } from "@/app/api/config";
 import ProfileForm from "./ProfileForm";
 
 import styles from "./ProfilePageClient.module.css";
